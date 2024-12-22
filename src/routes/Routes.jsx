@@ -7,6 +7,7 @@ import AllBlogPage from '../pages/AllBlogPage'
 import BlogDetials from '../pages/BlogDetials'
 import AddBlog from '../pages/AddBlog'
 import UpdateBlog from '../pages/UpdateBlog'
+import Feature from '../pages/FeaturedPage'
 const router = createBrowserRouter([
   {
     path: '/',
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
       {
         path:'/update',
         element: <UpdateBlog/>
+      },
+      {
+        path:'/feature',
+        element: <Feature/>
       }
     ]
   },

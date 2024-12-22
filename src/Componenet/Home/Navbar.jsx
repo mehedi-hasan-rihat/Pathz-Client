@@ -42,7 +42,7 @@ export default function Navbar() {
       </li>
       <li className="">
         <NavLink
-          to="/blog/5456"
+          to="/blog"
           className={({ isActive }) =>
             isActive
               ? "text-white bg-blue-400 border border-gray-200 focus:bg-blue-400"
@@ -62,6 +62,18 @@ export default function Navbar() {
           }
         >
           <p className="p-1">Update</p>
+        </NavLink>
+      </li>
+      <li className="">
+        <NavLink
+          to="/feature"
+          className={({ isActive }) =>
+            isActive
+              ? "text-white bg-blue-400 border border-gray-200 focus:bg-blue-400"
+              : "border border-gray-200 rounded-md text-black"
+          }
+        >
+          <p className="p-1">Feature</p>
         </NavLink>
       </li>
     </div>

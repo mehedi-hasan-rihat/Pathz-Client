@@ -20,17 +20,6 @@ const BlogDetails = () => {
     },
   ];
 
-  // State for the comment textarea
-  const [newComment, setNewComment] = useState('');
-
-  // Handle comment submission (for now just logs the comment)
-  const handleCommentSubmit = (e) => {
-    e.preventDefault();
-    if (newComment.trim()) {
-      console.log("New Comment:", newComment);
-      setNewComment('');
-    }
-  };
 
   return (
     <div className="blog-details px-5 border rounded-md border-gray-200">
@@ -39,10 +28,8 @@ const BlogDetails = () => {
         <h3 className="text-2xl text-gray-600 font-semibold">Comments</h3>
 
         {/* Comment Form */}
-        <form onSubmit={handleCommentSubmit} className="mt-4 relative">
+        <form  className="mt-4 relative">
           <textarea
-            value={newComment}
-            onChange={(e) => setNewComment(e.target.value)}
             rows="4"
             className="w-full min-h-32 p-2 border border-gray-300 rounded-md focus:outline-gray-400"
             placeholder="Write your comment here..."
