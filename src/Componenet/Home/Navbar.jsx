@@ -1,7 +1,11 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProvider";
+import { Tooltip } from "react-tooltip";
 
 export default function Navbar() {
+    const { user, logOut } = useContext(AuthContext);
+  const navigate = useNavigate() 
   const listItem = (
     <div className="flex flex-col lg:flex-row gap-2 lg:gap-10">
       <li className="">
@@ -110,9 +114,47 @@ export default function Navbar() {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{listItem}</ul>
       </div>
-      <div className="navbar-end">
-        <a className="btn">Login</a>
-      </div>
+     <div className="navbar-end">
+     {user ? (
+          <div className="flex items-center justify-center gap-2  z-50">
+            <img
+              data-tooltip-id="my-tooltip"
+              data-tooltip-content={user.displayName}
+              data-tooltip-place="top"
+              className="w-10 h-10 rounded-full object-cover "
+              src={user?.photoURL}
+              alt="user"
+              referrerPolicy="no-referrer"
+            />
+            <Tooltip id="my-tooltip" className="z-50" />
+            <button
+              onClick={() => {
+                logOut();
+                navigate("/");
+              }}
+              className="btn border-blue-300 dark:text-black dark:bg-gray-300
+              "
+            >
+              LogOut
+            </button>
+          </div>
+        ) : (
+          <div className="flex gap-2 items-center justify-center">
+            <Link
+              to="/auth/login"
+              className="btn border-blue-300 dark:text-black dark:bg-gray-300"
+            >
+              Login
+            </Link>
+            <Link
+              to="/auth/signUp"
+              className="btn border-blue-300 dark:text-black dark:bg-gray-300"
+            >
+              Registration
+            </Link>
+          </div>
+        )}
+     </div>
     </div>
   );
 }
