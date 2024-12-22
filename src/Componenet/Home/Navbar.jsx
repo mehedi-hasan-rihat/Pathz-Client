@@ -42,7 +42,7 @@ export default function Navbar() {
       </li>
       <li className="">
         <NavLink
-          to="/"
+          to="/blog/5456"
           className={({ isActive }) =>
             isActive
               ? "text-white bg-blue-400 border border-gray-200 focus:bg-blue-400"

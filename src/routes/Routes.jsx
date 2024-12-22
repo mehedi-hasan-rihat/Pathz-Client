@@ -3,7 +3,8 @@ import ErrorPage from '../Componenet/ErrorPage'
 import React from 'react'
 import Mainlayout from '../layout/Mainlayout'
 import HomePage from '../pages/HomePage'
-import AllBlog from '../Componenet/Blogs/AllBlog'
+import AllBlogPage from '../pages/AllBlogPage'
+import BlogDetials from '../pages/BlogDetials'
 const router = createBrowserRouter([
   {
     path: '/',
@@ -16,7 +17,11 @@ const router = createBrowserRouter([
       },
       {
         path:'/blogs',
-        element: <AllBlog/>
+        element: <AllBlogPage/>
+      },
+      {
+        path:'/blog/:id',
+        element: <BlogDetials/>
       }
     ]
   },
