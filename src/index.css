@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Oswald:wght@200..700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+    font-family: "Oswald", serif;
+}
+
+.nunito-font{
+    font-family: "Nunito Sans", serif;
+}
