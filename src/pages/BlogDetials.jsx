@@ -1,108 +1,5 @@
-// import React, { useState } from "react";
-
-// const BlogDetails = () => {
-//   // Hardcoded blog data
-//   const blogData = {
-//     title: "Exploring the Wonders of Paris",
-//     content: "Paris is known for its culture, food, and landmarks such as the Eiffel Tower.",
-//     category: "Adventure",
-//     ownerEmail: "mehedi4794@gmail.com",
-//   };
-
-//   // Hardcoded user data
-//   const userData = {
-//     email: "user@example.com", // Example current user email
-//     displayName: "John Doe",
-//     photoURL: "https://example.com/photo.jpg",
-//   };
-
-//   // State for comments
-//   const [comments, setComments] = useState([
-//     {
-//       userName: "Jane Doe",
-//       userProfilePic: "https://example.com/photo.jpg",
-//       comment: "Amazing article, I love Paris!",
-//     },
-//     {
-//       userName: "John Smith",
-//       userProfilePic: "https://example.com/photo2.jpg",
-//       comment: "Great insights on the Eiffel Tower!",
-//     },
-//   ]);
-//   const [newComment, setNewComment] = useState("");
-
-//   // Check if current user is the blog owner
-//   const isOwner = userData.email === blogData.ownerEmail;
-
-//   // Handle submitting a new comment
-//   const handleCommentSubmit = () => {
-//     if (newComment.trim()) {
-//       const commentData = {
-//         userName: userData.displayName,
-//         userProfilePic: userData.photoURL,
-//         comment: newComment.trim(),
-//       };
-//       setComments([...comments, commentData]);
-//       setNewComment("");
-//     }
-//   };
-
-//   return (
-//     <div className="max-w-3xl mx-auto bg-white p-6 rounded-lg shadow-md">
-//       <h2 className="text-3xl font-bold mb-4">{blogData.title}</h2>
-//       <p className="text-gray-700">{blogData.content}</p>
-//       <p className="text-sm text-gray-500 mt-4">Category: {blogData.category}</p>
-
-//       {/* Conditional rendering based on blog ownership */}
-//       {isOwner ? (
-//         <p className="mt-4 text-red-500">You cannot comment on your own blog.</p>
-//       ) : (
-//         <div>
-//           <textarea
-//             value={newComment}
-//             onChange={(e) => setNewComment(e.target.value)}
-//             placeholder="Write a comment..."
-//             className="w-full p-3 mt-4 border rounded-md"
-//             rows="4"
-//           ></textarea>
-//           <button
-//             onClick={handleCommentSubmit}
-//             className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md"
-//           >
-//             Submit Comment
-//           </button>
-//         </div>
-//       )}
-
-//       {/* Comments Section */}
-//       <div className="mt-6">
-//         <h3 className="text-2xl font-semibold">Comments</h3>
-//         {comments.length === 0 ? (
-//           <p>No comments yet. Be the first to comment!</p>
-//         ) : (
-//           comments.map((comment, index) => (
-//             <div key={index} className="mt-4 flex items-start gap-4">
-//               <img
-//                 src={comment.userProfilePic}
-//                 alt={comment.userName}
-//                 className="w-10 h-10 rounded-full"
-//               />
-//               <div>
-//                 <h4 className="font-semibold">{comment.userName}</h4>
-//                 <p>{comment.comment}</p>
-//               </div>
-//             </div>
-//           ))
-//         )}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default BlogDetails;
-
 import React from "react";
-
+import Comment from '../Componenet/BlogDetails/Comment'
 export default function BlogDetials() {
   return (
     <div className="bg-[#FDFDFF]">
@@ -116,7 +13,6 @@ export default function BlogDetials() {
 
       <div className="min-h-screen relative -top-14 py-12 max-w-4xl px-5 bg-white mx-auto">
         <div className="">
-          <div className="">
             <div className="px-5">
               <h2 className="text-4xl lg:text-5xl font-normal">
                 17 Places You Must Visit in Turkey
@@ -138,11 +34,8 @@ export default function BlogDetials() {
                 </div>
               </div>
             </div>
-          </div>
           <div className="border-t border-gray-200 mt-10"></div>
-        </div>
-
-        <div className="px-16 mt-16 font-light">
+          <div className="px-16 mt-16 font-light">
           <div className="leading-relaxed">
             <p>
               Turkey is a land of contrasts, where ancient meets modern, Europe
@@ -236,7 +129,14 @@ export default function BlogDetials() {
             </div>
           </div>
         </div>
-      </div>
+        </div>
+        <div className="mt-28">
+        <Comment/>
+        </div>
     </div>
+
+
+        
+      </div>
   );
 }

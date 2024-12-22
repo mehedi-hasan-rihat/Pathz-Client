@@ -30,14 +30,14 @@ export default function Navbar() {
       </li>
       <li className="">
         <NavLink
-          to="/"
+          to="/add-blog"
           className={({ isActive }) =>
             isActive
               ? "text-white bg-blue-400 border border-gray-200 focus:bg-blue-400"
               : "border border-gray-200 rounded-md text-black"
           }
         >
-          <p className="p-1">Add Review</p>
+          <p className="p-1">Add Blog</p>
         </NavLink>
       </li>
       <li className="">
@@ -54,14 +54,14 @@ export default function Navbar() {
       </li>
       <li className="">
         <NavLink
-          to="/"
+          to="/Update"
           className={({ isActive }) =>
             isActive
               ? "text-white bg-blue-400 border border-gray-200 focus:bg-blue-400"
               : "border border-gray-200 rounded-md text-black"
           }
         >
-          <p className="p-1">WatchList</p>
+          <p className="p-1">Update</p>
         </NavLink>
       </li>
     </div>
