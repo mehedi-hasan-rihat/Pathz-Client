@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
-import { Tooltip } from "react-tooltip";
 
 export default function Navbar() {
     const { user, logOut } = useContext(AuthContext);
@@ -126,7 +125,6 @@ export default function Navbar() {
               alt="user"
               referrerPolicy="no-referrer"
             />
-            <Tooltip id="my-tooltip" className="z-50" />
             <button
               onClick={() => {
                 logOut();

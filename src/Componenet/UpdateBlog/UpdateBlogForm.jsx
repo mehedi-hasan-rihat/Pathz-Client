@@ -1,43 +1,77 @@
 import axios from "axios";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
+import { useParams } from "react-router-dom";
 
-export default function AddBlogForm() {
-  const {user} = useContext(AuthContext)
-  const handleSubmit = (e) => {
+export default function UpdateBlogForm() {
+  const { user } = useContext(AuthContext);
+  const [blog, setBlog] = useState();
+  const { id } = useParams();
+  console.log(id);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const { data } = await axios.get(`http://localhost:3000/blog/${id}`);
+        setBlog(data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchData();
+  }, [id]);
+
+  const {
+    category,
+    cover_img,
+    img,
+    img_1,
+    img_2,
+    img_3,
+    location,
+    long_disc,
+    short_disc,
+    tips,
+    title,
+    _id,
+  } = blog || {};
+
+  console.log(blog);
+
+  const handleUpdate = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const formObject = Object.fromEntries(formData.entries());
-    formObject.long_disc = formObject.long_disc.split('\n')
-    formObject.tips = formObject.tips.split('\n')
+    formObject.long_disc = formObject.long_disc.split("\n");
+    formObject.tips = formObject.tips.split("\n");
     const userInfo = {
-      email : user?.email,
-      photo : user?.photoURL,
-      name : user?.displayName,
-      date : new Date()
-    }
+      email: user?.email,
+      photo: user?.photoURL,
+      name: user?.displayName,
+      last_updated_date: new Date(),
+    };
 
-    const blogData =  {userInfo ,...formObject}
-    console.log(blogData)
-    console.log("Form Submitted:",);
-    axios.post('http://localhost:3000/add-blog',blogData)
-  .then(function (response) {
-    console.log(response.data);
-  })
-  .catch(function (error) {
-    console.log(error);
-  })
+    const blogData = { userInfo, ...formObject };
+    console.log(blogData);
+    axios
+      .put(`http://localhost:3000/update/${id}`, blogData)
+      .then(function (response) {
+        console.log(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
   return (
     <div className="max-w-5xl mt-5 mx-auto">
-      <form className="card-body" onSubmit={handleSubmit}>
+      <form className="card-body" onSubmit={handleUpdate}>
         <div className="flex gap-5">
           <div className="form-control w-full">
             <label className="label">
               <span className="label-text">Title</span>
             </label>
             <input
+              defaultValue={title}
               name="title"
               type="text"
               placeholder="Title"
@@ -50,6 +84,7 @@ export default function AddBlogForm() {
               <span className="label-text">Cover Img Link</span>
             </label>
             <input
+              defaultValue={cover_img}
               name="cover_img"
               type="url"
               placeholder="Cover Img Link"
@@ -60,13 +95,14 @@ export default function AddBlogForm() {
         </div>
 
         <div className="flex gap-5">
-          <div className="w-full">
+         {category &&  <div className="w-full">
             <label className="label">
               <span className="label-text">Category</span>
             </label>
             <select
+             defaultValue={blog?.category}
               name="category"
-              className="select select-bordered w-full text-gray-500"
+              className="select select-bordered w-full "
             >
               <option disabled>Filter by Category</option>
               <option>Adventure</option>
@@ -78,12 +114,13 @@ export default function AddBlogForm() {
               <option>Urban-Exploration</option>
               <option>Solo-Travel</option>
             </select>
-          </div>
+          </div>}
           <div className="form-control w-full">
             <label className="label">
               <span className="label-text">Location</span>
             </label>
             <input
+              defaultValue={location}
               name="location"
               type="text"
               placeholder="Location"
@@ -98,6 +135,7 @@ export default function AddBlogForm() {
             <span className="label-text">Short Description</span>
           </label>
           <textarea
+            defaultValue={short_disc}
             name="short_disc"
             className="textarea textarea-bordered min-h-28"
             placeholder="Shot discription about your travle"
@@ -108,6 +146,7 @@ export default function AddBlogForm() {
             <span className="label-text">Long Description</span>
           </label>
           <textarea
+            defaultValue={long_disc?.join("\n")}
             name="long_disc"
             className="textarea textarea-bordered min-h-48"
             placeholder="Enter every tips in a new line"
@@ -119,6 +158,7 @@ export default function AddBlogForm() {
             <span className="label-text">Show an Image</span>
           </label>
           <input
+            defaultValue={img}
             name="img"
             type="url"
             placeholder="Enter an Img link"
@@ -132,7 +172,9 @@ export default function AddBlogForm() {
             <span className="label-text">Suggetin or tips</span>
           </label>
           <textarea
+            defaultValue={tips?.join("\n")}
             name="tips"
+            required
             className="textarea textarea-bordered min-h-48"
             placeholder="Enter every tips in a new line"
           ></textarea>
@@ -149,6 +191,7 @@ export default function AddBlogForm() {
                 <span className="label-text">Image-1</span>
               </label>
               <input
+                defaultValue={img_1}
                 type="url"
                 name="img_1"
                 placeholder="Image-1"
@@ -162,6 +205,7 @@ export default function AddBlogForm() {
                 <span className="label-text">Image-2</span>
               </label>
               <input
+                defaultValue={img_2}
                 name="img_2"
                 type="url"
                 placeholder="Image-2"
@@ -175,6 +219,7 @@ export default function AddBlogForm() {
                 <span className="label-text">Image-3</span>
               </label>
               <input
+                defaultValue={img_3}
                 name="img_3"
                 type="url"
                 placeholder="Image-3"

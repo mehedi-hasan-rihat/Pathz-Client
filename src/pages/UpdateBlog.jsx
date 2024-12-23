@@ -1,5 +1,5 @@
 import React from 'react'
-import AddBlogForm from '../Componenet/AddBlog/AddBlogForm'
+import UpdateBlogForm from '../Componenet/UpdateBlog/UpdateBlogForm'
 
 export default function UpdateBlog() {
   return (
@@ -8,7 +8,7 @@ export default function UpdateBlog() {
                   <h2 className='text-2xl font-medium'>Update your Blog</h2>
                   <p className='mt-1 font-normal'>Modify your existing blog details and keep it up-to-date</p>
               </div>
-            <AddBlogForm/>
+            <UpdateBlogForm/>
     </div>
   )
 }
