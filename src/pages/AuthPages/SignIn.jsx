@@ -77,8 +77,6 @@ export default function Login() {
           onClick={() => {
             signInWithGoogle()
               .then((userCredential) => {
-                const user = userCredential.user;
-                console.log(user);
                 Swal.fire({
                   title: "Successfully Login",
                   text: " ",

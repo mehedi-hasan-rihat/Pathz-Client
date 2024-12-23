@@ -1,25 +1,20 @@
 import React, { useEffect, useState } from "react";
 import BlogCard from "../Componenet/Blogs/BlogCard";
 import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
 
 const App = () => {
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("");
-  const [blogs, setBlogs] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
+  const { data: blogs } = useQuery({
+    queryKey: ["blogs"],
+    queryFn: async () => {
         const { data } = await axios.get(
           `http://localhost:3000/blogs?filter=${category}&search=${search}`
         );
-        setBlogs(data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    fetchData();
-  }, [search, category]);
+        return data;
+    },
+  });
   return (
     <div className="py-8 min-h-screen mb-20 container mx-auto">
       <div className="">
@@ -39,7 +34,7 @@ const App = () => {
               className="select select-bordered lg:w-full max-w-xs focus:outline-none"
             >
               <option disabled>Filter by Category</option>
-              <option value=''>ALL Blogs</option>
+              <option value="">ALL Blogs</option>
               <option>Adventure</option>
               <option>Cultural</option>
               <option>Luxury</option>

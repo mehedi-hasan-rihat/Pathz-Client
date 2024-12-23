@@ -6,6 +6,7 @@ import axios from "axios";
 import { AuthContext } from "../../providers/AuthProvider";
 import { toast } from "react-hot-toast";
 import { motion } from "motion/react";
+import { PhotoView } from "react-photo-view";
 
 export default function BlogCart({ id, blogData }) {
   const { title, short_disc, img, _id, location } = blogData;
@@ -91,11 +92,11 @@ export default function BlogCart({ id, blogData }) {
         >
           <animated.div style={props} className="">
             <div className="w-full mt-4">
-              <img
+              <PhotoView src={img}><img
                 src={img}
                 alt="thumbnail"
                 className="h-80 w-full object-cover hover:shadow-xl"
-              />
+              /></PhotoView>
             </div>
           </animated.div>
         </div>

@@ -5,6 +5,7 @@ import axios from "axios";
 import { GrDocumentUpdate } from "react-icons/gr";
 import { AuthContext } from "../providers/AuthProvider";
 import { format } from "date-fns";
+import { PhotoView } from "react-photo-view";
 
 export default function BlogDetials() {
   const [blog, setBlog] = useState([]);
@@ -55,7 +56,15 @@ export default function BlogDetials() {
   return (
     <div className="bg-[#FDFDFF]">
       <div className="h-[400px] lg:h-[600px] w-full">
-        <img src={cover_img} alt="" className="h-full w-full object-cover" />
+        {cover_img && (
+          <PhotoView src={cover_img}>
+            <img
+              src={cover_img}
+              alt=""
+              className="h-full w-full object-cover"
+            />
+          </PhotoView>
+        )}
       </div>
 
       <div className="min-h-screen relative -top-14 py-12 max-w-4xl px-5 bg-white mx-auto">
@@ -90,7 +99,6 @@ export default function BlogDetials() {
               </div>
               <div className=" text-gray-500 text-sm">
                 <p className=" mt-2">
-
                   By <span className="font-medium">{blog?.userInfo?.name}</span>
                   - on
                   {blog?.userInfo?.date &&
@@ -104,16 +112,20 @@ export default function BlogDetials() {
             <div className="leading-relaxed">
               <p>{short_disc}</p>
               <p className="text-3xl font-medium mt-10 mb-6">{location}</p>
-              <img src={img} alt="" className="object-contain" />
+              { 
+                <PhotoView src={img}>
+    
+                  <img src={img} alt="" className="object-contain" />
+                </PhotoView>
+              }
 
               <div className="my-8">
-                {console.log(tips)}
                 <div>
                   {long_disc?.map((disc, idx) => {
                     return <p key={idx}>{disc}</p>;
                   })}
                 </div>
-              
+
                 <div className="my-10">
                   <p className="font-medium">Tips for you : </p>
                   <ul className="pl-5">
@@ -127,25 +139,37 @@ export default function BlogDetials() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               <div className="col-span-1 md:col-span-2">
-                <img
-                  src={img_1}
-                  alt="Celsus Library"
-                  className="w-full h-auto object-cover"
-                />
+                {img_1 && (
+                  <PhotoView src={img_1}>
+                    <img
+                      src={img_1}
+                      alt="img-1"
+                      className="w-full h-auto object-cover"
+                    />
+                  </PhotoView>
+                )}
               </div>
 
               <div className="col-span-1 flex flex-col sm:flex-row lg:flex-col gap-4">
-                <img
-                  src={img_2}
-                  alt="Cappadocia Hot Air Balloon"
-                  className="w-full h-auto object-cover"
-                />
+                {img_2 && (
+                  <PhotoView src={img_2}>
+                    <img
+                      src={img_2}
+                      alt="img-2"
+                      className="w-full h-auto object-cover"
+                    />
+                  </PhotoView>
+                )}
 
-                <img
-                  src={img_3}
-                  alt="Pamukkale"
-                  className="w-full h-auto object-cover"
-                />
+                {img_3 && (
+                  <PhotoView src={img_3}>
+                    <img
+                      src={img_3}
+                      alt="img-3"
+                      className="w-full h-auto object-cover"
+                    />
+                  </PhotoView>
+                )}
               </div>
             </div>
           </div>

@@ -8,7 +8,7 @@ import {
   signOut,
   updateProfile,
 } from "firebase/auth";
-import React from 'react'
+import React from "react";
 import axios from "axios";
 import auth from "../Firebase/FirebaseInit";
 export const AuthContext = createContext(null);
@@ -50,9 +50,34 @@ const AuthProvider = ({ children }) => {
 
   // onAuthStateChange
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       setUser(currentUser);
-      console.log(currentUser)
+      console.log(currentUser);
+      if (currentUser?.email) {
+        try {
+          const { data } = await axios.post(
+            "http://localhost:3000/jwt",
+            { email: currentUser?.email },
+            {
+              withCredentials: true,
+            }
+          );
+          console.log(data);
+        } catch (err) {
+          console.log(err);
+        }
+      } else {
+        try {
+          const { data } = await axios.get(
+            "http://localhost:3000/jwt-clear",
+            {withCredentials:true}
+          );
+          console.log(data);
+        } catch (err) {
+          console.log(err);
+        }
+      }
+
       setLoading(false);
     });
     return () => {

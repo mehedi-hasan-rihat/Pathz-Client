@@ -2,22 +2,19 @@ import React, { useEffect, useState } from "react";
 import BlogCart from "./BlogCart";
 import axios from "axios";
 import { motion } from "motion/react";
-
+import { useQuery } from '@tanstack/react-query'
+import Loader from "../Loader";
 export default function RecentBlog() {
-  const [blogs, setBlogs] = useState([]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const { data } = await axios.get("http://localhost:3000/recent-blog");
-        setBlogs(data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
+  const {data : blogs, isLoading} = useQuery({ queryKey: ['recent-blogs'], queryFn: async () => {
+    const { data } = await axios.get("http://localhost:3000/recent-blog");
+    return data
+  }})
 
-    fetchData();
-  }, []);
+  if(isLoading){
+    return <Loader/>
+  }
+  console.log(blogs)
 
   return (
     <div className="my-32">
