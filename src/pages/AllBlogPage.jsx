@@ -1,9 +1,28 @@
-import React from "react";
-import AllBlog from "../Componenet/Blogs/AllBlog";
-export default function AllBlogPage() {
-  return (
+import React, { useEffect, useState } from "react";
+import BlogCard from "../Componenet/Blogs/BlogCard";
+import axios from "axios";
 
-      <div className="container mx-auto">
+const App = () => {
+  const [search, setSearch] = useState("");
+  const [category, setCategory] = useState("");
+  const [blogs, setBlogs] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const { data } = await axios.get(
+          `http://localhost:3000/blogs?filter=${category}&search=${search}`
+        );
+        setBlogs(data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchData();
+  }, [search, category]);
+  return (
+    <div className="py-8 min-h-screen mb-20 container mx-auto">
+      <div className="">
         <div className="text-center my-10 max-w-md md:max-w-lg xl:max-w-xl leading-5 mx-auto">
           <h2 className="text-4xl font-bold leading-loose">All Travel Tales</h2>
           <p className="text-gray-600">
@@ -11,11 +30,16 @@ export default function AllBlogPage() {
             unforgettable experiences from every blog.
           </p>
         </div>
-
         <div className="mt-20">
           <form action="" className="flex flex-row gap-5">
-            <select className="select select-bordered lg:w-full max-w-xs focus:outline-none">
+            <select
+              onChange={(e) => {
+                setCategory(e.target.value);
+              }}
+              className="select select-bordered lg:w-full max-w-xs focus:outline-none"
+            >
               <option disabled>Filter by Category</option>
+              <option value=''>ALL Blogs</option>
               <option>Adventure</option>
               <option>Cultural</option>
               <option>Luxury</option>
@@ -27,7 +51,14 @@ export default function AllBlogPage() {
             </select>
 
             <label className="input input-bordered flex items-center gap-2 msx-w-xs">
-              <input type="text" className="grow w-full" placeholder="Search" />
+              <input
+                onChange={(e) => {
+                  setSearch(e.target.value);
+                }}
+                type="text"
+                className="grow w-full"
+                placeholder="Search"
+              />
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 16 16"
@@ -42,8 +73,15 @@ export default function AllBlogPage() {
               </svg>
             </label>
           </form>
+        </div>
       </div>
-      <AllBlog />
+      <div className="grid xl:grid-cols-4 md:grid-cols-2 gap-5 my-10">
+        {blogs?.map((blog) => {
+          return <BlogCard key={blog._id} blogData={blog} />;
+        })}
+      </div>
     </div>
   );
-}
+};
+
+export default App;

@@ -18,12 +18,11 @@ export default function RecentBlog() {
     fetchData();
   }, []);
 
-  
   return (
     <div className="my-32">
       <div className=" text-center my-10">
-        <h2 className="text-5xl font-semibold">Recent Insights</h2>
-        <p className="mt-3 text-xl"> Travel Stories You Can't Miss</p>
+        <h2 className="text-5xl font-medium">Recent Insights</h2>
+        <p className="mt-3 text-lg"> Explore the Latest Insights, Tips, and Stories from Our Recent Blogs</p>
       </div>
       <div className="">
        {

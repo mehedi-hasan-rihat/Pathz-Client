@@ -1,16 +1,50 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useSpring, animated } from "@react-spring/web";
 import { useNavigate } from "react-router-dom";
-
+import { CiLocationOn } from "react-icons/ci";
+import axios from "axios";
+import { AuthContext } from "../../providers/AuthProvider";
+import { toast } from "react-hot-toast";
 
 export default function BlogCart({ id, blogData }) {
-const {title, short_disc, img, _id} = blogData
+  const { title, short_disc, img, _id, location } = blogData;
+  const { user } = useContext(AuthContext);
+  const notify = () =>
+    toast("Succesfully added to wishlist", {
+      duration: 4000,
+      position: "top-center",
+      style: {
+        background: '#D9EAFD',
+      },
+    });
+  const navigate = useNavigate();
 
-const navigate = useNavigate()
+  const handleDetails = () => {
+    navigate(`/blog/${_id}`);
+  };
 
-const handleDetails = () => {
-    navigate(`/blog/${_id}`)
-}
+  const handleAddWishList = async () => {
+    const watchListData = {
+      blogId: _id,
+      userData: {
+        email: user.email,
+        name: user.displayName,
+        photo: user.photoURL,
+      },
+    };
+    try {
+      const { data } = await axios.post(
+        "http://localhost:3000/add-watchlist",
+        watchListData
+      );
+      console.log(data);
+      if (data.insertedId) {
+        notify();
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const [props, set] = useSpring(() => ({
     transform: "perspective(600px) rotateX(0deg) rotateY(0deg)",
@@ -59,17 +93,28 @@ const handleDetails = () => {
           </animated.div>
         </div>
         <div className="flex-1">
-          <h2 className="font-medium text-gray-800 text-4xl">
-           {title}
-          </h2>
-          <p className="font-light mt-5">
-           {short_disc}
-          </p>
+          <div className="flex justify-between flex-col md:flex-row mr-16 xl:flex-col gap-2">
+            <h2 className="font-medium text-gray-800 text-4xl">{title}</h2>
+
+            <p className="flex items-center gap-2">
+              <CiLocationOn /> {location}
+            </p>
+          </div>
+          <p className="font-light mt-5">{short_disc}</p>
 
           <div className="flex gap-3 my-5">
-            {" "}
-            <div className="btn bg-blue-400 text-white hover:bg-blue-500" onClick={handleDetails}>Details</div>
-            <div className="btn bg-blue-400 text-white hover:bg-blue-500">Add Wishlist</div>
+            <div
+              className="btn bg-blue-400 text-white hover:bg-blue-500"
+              onClick={handleDetails}
+            >
+              Details
+            </div>
+            <div
+              className="btn bg-blue-400 text-white hover:bg-blue-500"
+              onClick={handleAddWishList}
+            >
+              Add Wishlist
+            </div>
           </div>
         </div>
       </div>

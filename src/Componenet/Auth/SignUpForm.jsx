@@ -1,13 +1,18 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import { toast } from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../providers/AuthProvider";
 export default function SignIn() {
   const navigate = useNavigate();
   const { createUser, updateUserProfile, signInWithGoogle } = useContext(AuthContext);
-  const notify = () => toast.warning("Password must include a capital letter, special character, number, and be at least 6 characters long.");
+  const notify = () => toast("Password must include a capital letter, special character, number, and be at least 6 characters long.", {
+    style : {
+      background : "#EE4B2B",
+      color : "white"
+    }
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();

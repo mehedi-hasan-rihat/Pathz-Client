@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
+import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProvider";
+import axios from "axios";
 
 const BlogCard = ({blogData}) => {
+  const {user} = useContext(AuthContext)
   const {
     category,
     cover_img,
@@ -16,6 +20,37 @@ const BlogCard = ({blogData}) => {
     title,
     _id,
   } = blogData;
+  const notify = () =>
+    toast("Succesfully added to wishlist", {
+      duration: 4000,
+      position: "top-center",
+      style: {
+        background: '#D9EAFD',
+      },
+    });
+
+  const onWishlistClick = async () => {
+    const watchListData = {
+      blogId: _id,
+      userData: {
+        email: user.email,
+        name: user.displayName,
+        photo: user.photoURL,
+      },
+    };
+    try {
+      const { data } = await axios.post(
+        "http://localhost:3000/add-watchlist",
+        watchListData
+      );
+      console.log(data);
+      if (data.insertedId) {
+        notify();
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
 
   const navigate = useNavigate()
@@ -33,13 +68,13 @@ const handleDetails = () => {
           alt={title}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-80 rounded-t-2xl"></div>
-        <button
-          //   onClick={onWishlistClick}
-          className="absolute top-4 right-4 bg-white/80 p-2 rounded-full shadow-md hover:bg-red-200 transition-colors"
+        <div
+            onClick={onWishlistClick}
+          className="absolute top-4 right-4 w-10 h-9 text-center bg-white/90 text-2xl  rounded-full shadow-md hover:bg-red-200 transition-colors"
           aria-label="Add to Wishlist"
         >
           ❤️
-        </button>
+        </div>
         <div className="absolute bottom-4 left-4 bg-blue-500 text-white text-sm px-3 py-1 rounded-full shadow-lg">
           {category}
         </div>
