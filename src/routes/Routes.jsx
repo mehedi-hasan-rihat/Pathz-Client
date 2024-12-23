@@ -12,6 +12,7 @@ import AuthLayout from '../layout/AuthLayout'
 import { path } from 'framer-motion/client'
 import SignIn from '../pages/AuthPages/SignIn'
 import SignUp from '../pages/AuthPages/SignUp'
+import PrivateRoute from './PrivateRoute'
 const router = createBrowserRouter([
   {
     path: '/',
@@ -32,11 +33,11 @@ const router = createBrowserRouter([
       },
       {
         path:'/add-blog',
-        element: <AddBlog/>
+        element:<PrivateRoute><AddBlog/></PrivateRoute>
       },
       {
         path:'/update/:id',
-        element: <UpdateBlog/>
+        element: <PrivateRoute><UpdateBlog/></PrivateRoute>
       },
       {
         path:'/feature',

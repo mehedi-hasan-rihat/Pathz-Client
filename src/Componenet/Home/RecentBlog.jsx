@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import BlogCart from "./BlogCart";
 import axios from "axios";
+import { motion } from "motion/react";
 
 export default function RecentBlog() {
   const [blogs, setBlogs] = useState([]);
@@ -20,10 +21,18 @@ export default function RecentBlog() {
 
   return (
     <div className="my-32">
-      <div className=" text-center my-10">
+      <motion.div
+         initial={{ opacity: 0, scale: 0, y : 100 }}
+         animate={{ opacity: 1, scale: 1, y:0 }}
+         exit={{ opacity: 0 }}
+         transition={{
+           duration: 0.4,
+           scale: { type: "spring", visualDuration: 0.6, bounce: 0.4 },
+         }}
+      className=" text-center mt-36 mb-28">
         <h2 className="text-5xl font-medium">Recent Insights</h2>
         <p className="mt-3 text-lg"> Explore the Latest Insights, Tips, and Stories from Our Recent Blogs</p>
-      </div>
+      </motion.div>
       <div className="">
        {
         blogs?.map((blog, idx) => {

@@ -1,18 +1,24 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../providers/AuthProvider";
 export default function SignIn() {
   const navigate = useNavigate();
-  const { createUser, updateUserProfile, signInWithGoogle } = useContext(AuthContext);
-  const notify = () => toast("Password must include a capital letter, special character, number, and be at least 6 characters long.", {
-    style : {
-      background : "#EE4B2B",
-      color : "white"
-    }
-  });
+  const { createUser, updateUserProfile, signInWithGoogle } =
+    useContext(AuthContext);
+  const notify = () =>
+    toast(
+      "Password must include a capital letter, special character, number, and be at least 6 characters long.",
+      {
+        style: {
+          background: "#EE4B2B",
+          color: "white",
+        },
+      }
+    );
+  const location = useLocation();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -29,24 +35,23 @@ export default function SignIn() {
     const validPassCheak = validPass(password);
 
     if (!validPassCheak) {
-      notify()
+      notify();
       return;
     }
-
 
     createUser(email, password)
       .then((userCredential) => {
         const user = userCredential.user;
         Swal.fire({
           title: "Successfully SignUp",
-                  text: " ",
-                  icon: "success"
+          text: " ",
+          icon: "success",
         });
-        console.log(user)
+        console.log(user);
         updateUserProfile(name, photo_url).catch((error) => {
           console.log(error);
         });
-        navigate("/");
+        navigate(location.state ? location.state : "/");
       })
       .catch((error) => {
         console.log(error);
@@ -102,8 +107,7 @@ export default function SignIn() {
             className="input input-bordered"
             required
           />
-          <label className="label">
-          </label>
+          <label className="label"></label>
         </div>
         <Link
           to="/auth/login"
@@ -125,22 +129,22 @@ export default function SignIn() {
                 Swal.fire({
                   title: "Successfully SignUp",
                   text: " ",
-                  icon: "success"
+                  icon: "success",
                 });
-                navigate(location.state ? location.state.location : "/");
+                navigate(location.state ? location.state : "/");
               })
               .catch((error) => {
                 console.log(error);
                 Swal.fire({
-                    title: "Try again",
-                    text: "Can't signUp this tis time. Please try again",
-                    icon: "error"
-                  });
+                  title: "Try again",
+                  text: "Can't signUp this tis time. Please try again",
+                  icon: "error",
+                });
               });
           }}
         >
           <span className="">
-            <FcGoogle/>
+            <FcGoogle />
           </span>
           Continue with Google
         </div>

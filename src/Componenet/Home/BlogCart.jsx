@@ -5,6 +5,7 @@ import { CiLocationOn } from "react-icons/ci";
 import axios from "axios";
 import { AuthContext } from "../../providers/AuthProvider";
 import { toast } from "react-hot-toast";
+import { motion } from "motion/react";
 
 export default function BlogCart({ id, blogData }) {
   const { title, short_disc, img, _id, location } = blogData;
@@ -14,7 +15,7 @@ export default function BlogCart({ id, blogData }) {
       duration: 4000,
       position: "top-center",
       style: {
-        background: '#D9EAFD',
+        background: "#D9EAFD",
       },
     });
   const navigate = useNavigate();
@@ -53,8 +54,14 @@ export default function BlogCart({ id, blogData }) {
 
   return (
     <div className="mx-auto max-w-7xl">
-      <div
-        className={`px-20 my-10 lg:my-14 flex lg:items-center gap-5 lg:gap-10 ${
+      <motion.div
+        initial={{ opacity: 0, scale: 0, ...(id % 2 === 0 ? { x: -100 } : { x: 100 })}}
+        animate={{ opacity: 1, scale: 1, x: 0 }}
+        transition={{
+          duration: 0.4,
+          scale: { type: "spring", visualDuration: 0.8, bounce: 0.4 },
+        }}
+        className={`px-20 my-10 lg:my-14 flex xl:items-center gap-5 lg:gap-10 ${
           id % 2 === 0
             ? " flex-col  xl:flex-row"
             : "flex-col xl:flex-row-reverse"
@@ -109,15 +116,21 @@ export default function BlogCart({ id, blogData }) {
             >
               Details
             </div>
-            <div
+            <motion.div
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.8 }}
+              transition={{
+                duration: 0.4,
+                scale: { type: "spring", visualDuration: 0.2, bounce: 0.3 },
+              }}
               className="btn bg-blue-400 text-white hover:bg-blue-500"
               onClick={handleAddWishList}
             >
               Add Wishlist
-            </div>
+            </motion.div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }

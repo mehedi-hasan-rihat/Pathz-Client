@@ -22,8 +22,7 @@ export default function Login() {
           text: " ",
           icon: "success",
         });
-        console.log(location.state.location);
-        navigate(location.state ? location.state.location : "/");
+        navigate(location.state ? location.state : "/");
       })
       .catch((error) => {
         Swal.fire({
@@ -85,7 +84,7 @@ export default function Login() {
                   text: " ",
                   icon: "success",
                 });
-                navigate(location.state ? location.state.location : "/");
+                navigate(location.state ? location.state : "/");
               })
               .catch((error) => {
                 console.log(error);

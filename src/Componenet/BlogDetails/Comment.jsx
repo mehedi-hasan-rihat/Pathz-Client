@@ -61,7 +61,7 @@ return (
         <textarea
           rows="4"
           name="comment"
-          className="w-full min-h-32 p-2 border border-gray-300 rounded-md focus:outline-gray-400"
+          className="w-full resize-none h-32 p-2 border border-gray-300 rounded-md focus:outline-gray-400"
           placeholder="Write your comment here..."
         ></textarea>
         <button

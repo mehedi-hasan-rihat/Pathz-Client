@@ -1,10 +1,10 @@
-import React from 'react'
-import SignUpForm from '../../Componenet/Auth/SignUpForm'
+import React from "react";
+import SignUpForm from "../../Componenet/Auth/SignUpForm";
 
 export default function SignUp() {
   return (
     <div>
-      <SignUpForm/>
+      <SignUpForm />
     </div>
-  )
+  );
 }
