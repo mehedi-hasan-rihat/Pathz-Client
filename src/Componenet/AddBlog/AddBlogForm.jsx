@@ -1,43 +1,52 @@
 import axios from "axios";
-import React, { useContext } from "react";
+import React, { useContext, useRef } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
+import { useMutation } from "@tanstack/react-query";
 
 export default function AddBlogForm() {
-  const {user} = useContext(AuthContext)
-  const handleSubmit = (e) => {
+  const { user } = useContext(AuthContext);
+  const formRef = useRef(null);
+
+  const { isPending, mutateAsync } = useMutation({
+    mutationFn: (blogData) => {
+      return axios.post("http://localhost:3000/add-blog", blogData);
+    },
+    onSuccess: ({ data }) => {
+      console.log(data);
+      formRef.current.reset()
+    },
+    onError: (error) => {
+      console.log(error);
+    },
+  });
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const formObject = Object.fromEntries(formData.entries());
-    formObject.long_disc = formObject.long_disc.split('\n')
-    formObject.tips = formObject.tips.split('\n')
+    formObject.long_disc = formObject.long_disc.split("\n");
+    formObject.tips = formObject.tips.split("\n");
     const userInfo = {
-      email : user?.email,
-      photo : user?.photoURL,
-      name : user?.displayName,
-      date : new Date()
-    }
-
-    const blogData =  {userInfo ,...formObject}
-    console.log(blogData)
-    console.log("Form Submitted:",);
-    axios.post('http://localhost:3000/add-blog',blogData)
-  .then(function (response) {
-    console.log(response.data);
-  })
-  .catch(function (error) {
-    console.log(error);
-  })
+      email: user?.email,
+      photo: user?.photoURL,
+      name: user?.displayName,
+      date: new Date(),
+    };
+    const blogData = { userInfo, ...formObject };
+    console.log(blogData);
+    await mutateAsync(blogData);
   };
 
   return (
     <div className="max-w-5xl mt-5 mx-auto">
-      <form className="card-body" onSubmit={handleSubmit}>
+      <form ref={formRef} className="card-body" onSubmit={handleSubmit}>
         <div className="flex gap-5">
           <div className="form-control w-full">
             <label className="label">
               <span className="label-text">Title</span>
             </label>
             <input
+            minLength='18'
               name="title"
               type="text"
               placeholder="Title"
@@ -98,6 +107,7 @@ export default function AddBlogForm() {
             <span className="label-text">Short Description</span>
           </label>
           <textarea
+          minLength="500"
             name="short_disc"
             className="textarea textarea-bordered min-h-28"
             placeholder="Shot discription about your travle"
@@ -108,6 +118,8 @@ export default function AddBlogForm() {
             <span className="label-text">Long Description</span>
           </label>
           <textarea
+          minLength="1200"
+          required
             name="long_disc"
             className="textarea textarea-bordered min-h-48"
             placeholder="Enter every tips in a new line"
@@ -185,7 +197,9 @@ export default function AddBlogForm() {
           </div>
         </div>
 
-        <button className="btn bg-blue-500">Submit</button>
+        <button className="btn bg-blue-500">
+          {isPending ? "Saving..." : "Submit"}
+        </button>
       </form>
     </div>
   );

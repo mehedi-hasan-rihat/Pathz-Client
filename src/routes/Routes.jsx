@@ -8,8 +8,8 @@ import BlogDetials from '../pages/BlogDetials'
 import AddBlog from '../pages/AddBlog'
 import UpdateBlog from '../pages/UpdateBlog'
 import Feature from '../pages/FeaturedPage'
+import Wishlist from '../pages/WishListPage'
 import AuthLayout from '../layout/AuthLayout'
-import { path } from 'framer-motion/client'
 import SignIn from '../pages/AuthPages/SignIn'
 import SignUp from '../pages/AuthPages/SignUp'
 import PrivateRoute from './PrivateRoute'
@@ -42,6 +42,10 @@ const router = createBrowserRouter([
       {
         path:'/feature',
         element: <Feature/>
+      },
+      {
+        path:'/wishlist',
+        element:<PrivateRoute><Wishlist/></PrivateRoute>
       }
     ]
   },

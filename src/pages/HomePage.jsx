@@ -5,17 +5,12 @@ import NewsLetter from "../Componenet/Home/NewsLetter";
 import Resort from "../Componenet/Home/Resort";
 
 export default function HomePage() {
-
   return (
-
-      <div
-        className="overflow-hidden"
-      >
-        <Banner />
-        <RecentBlog />
-        <NewsLetter />
-        <Resort />
-      </div>
-
+    <div className="overflow-hidden">
+      <Banner />
+      <RecentBlog />
+      <NewsLetter />
+      <Resort />
+    </div>
   );
 }

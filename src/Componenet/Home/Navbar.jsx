@@ -45,26 +45,14 @@ export default function Navbar() {
       </li>
       <li className="">
         <NavLink
-          to="/blog"
+          to="/wishlist"
           className={({ isActive }) =>
             isActive
               ? "text-white bg-blue-400 border border-gray-200 focus:bg-blue-400"
               : "border border-gray-200 rounded-md text-black"
           }
         >
-          <p className="p-1">My Reviews</p>
-        </NavLink>
-      </li>
-      <li className="">
-        <NavLink
-          to="/Update"
-          className={({ isActive }) =>
-            isActive
-              ? "text-white bg-blue-400 border border-gray-200 focus:bg-blue-400"
-              : "border border-gray-200 rounded-md text-black"
-          }
-        >
-          <p className="p-1">Update</p>
+          <p className="p-1">Wishlist</p>
         </NavLink>
       </li>
       <li className="">

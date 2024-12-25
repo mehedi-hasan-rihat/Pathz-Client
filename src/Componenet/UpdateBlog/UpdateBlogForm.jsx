@@ -74,6 +74,7 @@ export default function UpdateBlogForm() {
               defaultValue={title}
               name="title"
               type="text"
+              minLength='18'
               placeholder="Title"
               className="input input-bordered"
               required
@@ -137,6 +138,7 @@ export default function UpdateBlogForm() {
           <textarea
             defaultValue={short_disc}
             name="short_disc"
+              minLength='500'
             className="textarea textarea-bordered min-h-28"
             placeholder="Shot discription about your travle"
           ></textarea>
@@ -148,6 +150,7 @@ export default function UpdateBlogForm() {
           <textarea
             defaultValue={long_disc?.join("\n")}
             name="long_disc"
+              minLength='1200'
             className="textarea textarea-bordered min-h-48"
             placeholder="Enter every tips in a new line"
           ></textarea>

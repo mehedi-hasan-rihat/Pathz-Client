@@ -1,179 +1,54 @@
-import React from "react";
-import {
-  useReactTable,
-  createColumnHelper,
-  getCoreRowModel,
-  flexRender,
-} from "@tanstack/react-table";
+import React from 'react';
+import Loader from '../Componenet/Loader';
+import axios from 'axios';
+import { useQuery } from '@tanstack/react-query';
 
-const data = [
-  {
-    firstName: "Tanner",
-    lastName: "Linsley",
-    age: 33,
-    visits: 100,
-    progress: 50,
-    status: "Married",
-    id : 1 
-  },
-  {
-    firstName: "Kevin",
-    lastName: "Vandy",
-    age: 27,
-    visits: 200,
-    progress: 100,
-    status: "Single",
-    id : 2
-  },
-  {
-    firstName: "Tanner",
-    lastName: "Linsley",
-    age: 33,
-    visits: 100,
-    progress: 50,
-    status: "Married",
-    id : 3
-  },
-  {
-    firstName: "Kevin",
-    lastName: "Vandy",
-    age: 27,
-    visits: 200,
-    progress: 100,
-    status: "Single",
-    id : 4
-  },
-  {
-    firstName: "Tanner",
-    lastName: "Linsley",
-    age: 33,
-    visits: 100,
-    progress: 50,
-    status: "Married",
-    id : 5
-  },
-  {
-    firstName: "Kevin",
-    lastName: "Vandy",
-    age: 27,
-    visits: 200,
-    progress: 100,
-    status: "Single",
-    id : 6
-  },
-  {
-    firstName: "Tanner",
-    lastName: "Linsley",
-    age: 33,
-    visits: 100,
-    progress: 50,
-    status: "Married",
-    id : 7
-  },
-  {
-    firstName: "Kevin",
-    lastName: "Vandy",
-    age: 27,
-    visits: 200,
-    progress: 100,
-    status: "Single",
-    id : 8
-  },
-  {
-    firstName: "Tanner",
-    lastName: "Linsley",
-    age: 33,
-    visits: 100,
-    progress: 50,
-    status: "Married",
-    id : 9
-  },
-  {
-    firstName: "Kevin",
-    lastName: "Vandy",
-    age: 27,
-    visits: 200,
-    progress: 100,
-    status: "Single",
-    id : 10
-
-  },
-];
-
-const columnHelper = createColumnHelper();
-
-const columns = [
-    columnHelper.accessor("id", {
-        header: "id",
-      }),
-  columnHelper.accessor("firstName", {
-    header: "First Name",
-  }),
-  columnHelper.accessor("lastName", {
-    header: "Last Name",
-  }),
-  columnHelper.accessor("age", {
-    header: "Age",
-  }),
-  columnHelper.accessor("visits", {
-    header: "Visits",
-  }),
-  columnHelper.accessor("progress", {
-    header: "Progress",
-  }),
-  columnHelper.accessor("status", {
-    header: "Status",
-  }),
- 
-];
-
-export default function App() {
-  const table = useReactTable({
-    data,
-    columns,
-    getCoreRowModel: getCoreRowModel(),
+export default function FeaturedPage() {
+  const { data: topBlogs, isLoading, isError, error } = useQuery({
+    queryKey: ['topBlogs'],
+    queryFn: async () => {
+      const { data } = await axios.get('http://localhost:3000/feature');
+      return data;
+    },
   });
-  console.log(table.getHeaderGroups());
+
+  if (isLoading) {
+    return <Loader />;
+  }
+
+  if (isError) {
+    return <div className="text-red-500 flex justify-center items-center my-24
+    ">Error: {error.message}</div>;
+  }
+
 
   return (
-    <div className="flex justify-center my-20">
-      <div className="overflow-x-auto">
-        <table className="my-auto border border-gray-300">
-          <thead>
-            {table.getHeaderGroups().map((headerGroup) => (
-              <tr key={headerGroup.id} className="border-b bg-gray-200">
-                {headerGroup.headers.map((header) => (
-                  <th
-                    key={header.id}
-                    className="px-4 py-2 text-left font-medium text-gray-600"
-                  >
-                    {header.isPlaceholder
-                      ? null
-                      : flexRender(
-                          header.column.columnDef.header,
-                          header.getContext()
-                        )}
-                  </th>
-                ))}
-              </tr>
-            ))}
-          </thead>
-          <tbody>
-            {table.getRowModel().rows.map((row) => (
-              <tr key={row.id} className="border-b">
-                {row.getVisibleCells().map((cell) => (
-                  <td
-                    key={cell.id}
-                    className="px-4 py-2 text-gray-700 whitespace-nowrap"
-                  >
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                  </td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+    <div className="overflow-x-auto my-16 px-1 rounded-xl text-sm sm:text-md min-h-[calc(100vh-500px)] max-w-5xl mx-auto">
+      <table className="table-auto w-full border-collapse border border-gray-300">
+        <thead className="bg-[#60A5FA] text-white">
+          <tr className='text-center'>
+            <th className="p-4">#</th>
+            <th className="p-4 ">Title</th>
+            <th className="p-4">Long Description</th>
+            <th className="p-4">Category</th>
+            <th className="p-4">Word Count</th>
+          </tr>
+        </thead>
+        <tbody>
+          {topBlogs.map((topBlog, index) => (
+            <tr
+              key={topBlog._id}
+              className="even:bg-gray-100 hover:bg-gray-200 transition-colors text-center"
+            >
+              <td className="p-4 text-center">{index + 1}</td>
+              <td className="p-4">{topBlog.title}</td>
+              <td className="p-4">{topBlog.long_disc}</td>
+              <td className="p-4 text-center">{topBlog.category}</td>
+              <td className="p-4 text-center">{topBlog.wordCount}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }

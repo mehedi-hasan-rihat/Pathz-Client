@@ -5,7 +5,7 @@ export default function Banner() {
   return (
     <div className="">
       <div
-        className="bg-banner-img relative h-[560px] xl:h-[720px] bg-cover bg-center  grid place-items-center text-center my-2"
+        className="bg-banner-img relative h-[560px] xl:h-[780px] bg-cover bg-center  grid place-items-center text-center my-2"
       >
         <motion.div
        initial={{ opacity: 0, scale: 0 }}
