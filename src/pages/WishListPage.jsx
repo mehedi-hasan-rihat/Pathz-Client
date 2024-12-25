@@ -6,9 +6,10 @@ import Loader from "../Componenet/Loader";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import { AuthContext } from "../providers/AuthProvider";
-import { axiosSecure } from "../hooks/useAxiosSecure";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 export default function FeaturedPage() {
+  const axiosSecure = useAxiosSecure()
   const { user } = useContext(AuthContext);
   const {
     data: wishList,
@@ -63,9 +64,9 @@ export default function FeaturedPage() {
               className="even:bg-gray-100 hover:bg-gray-200 transition-colors text-center"
             >
               <td className="p-4 text-center">{index + 1}</td>
-              <td className="p-4">{wish.title}</td>
-              <td className="p-4">{wish.long_disc}</td>
-              <td className="p-4 text-center">{wish.category}</td>
+              <td className="p-4">{wish?.title}</td>
+              <td className="p-4">{wish?.long_disc}</td>
+              <td className="p-4 text-center">{wish?.category}</td>
             </tr>
           ))}
         </tbody>

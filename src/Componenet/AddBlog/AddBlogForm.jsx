@@ -107,7 +107,7 @@ export default function AddBlogForm() {
             <span className="label-text">Short Description</span>
           </label>
           <textarea
-          minLength="500"
+          minLength="400"
             name="short_disc"
             className="textarea textarea-bordered min-h-28"
             placeholder="Shot discription about your travle"
@@ -118,7 +118,7 @@ export default function AddBlogForm() {
             <span className="label-text">Long Description</span>
           </label>
           <textarea
-          minLength="1200"
+          // minLength="1200"
           required
             name="long_disc"
             className="textarea textarea-bordered min-h-48"

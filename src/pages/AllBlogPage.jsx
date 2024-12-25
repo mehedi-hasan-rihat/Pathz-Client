@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import BlogCard from "../Componenet/Blogs/BlogCard";
 import axios from "axios";
-import { keepPreviousData, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import Loader from "../Componenet/Loader";
 
 const App = () => {
@@ -10,16 +10,15 @@ const App = () => {
   const { data: blogs, isLoading } = useQuery({
     queryKey: ["blogs", category, search],
     queryFn: async () => {
-        const { data } = await axios.get(
-          `http://localhost:3000/blogs?filter=${category}&search=${search}`, {withCredentials : true}
-        ); 
-        return data;
-    } ,
-    
-  } );
- if(isLoading){
-  return <Loader/>
- }
+      const { data } = await axios.get(
+        `http://localhost:3000/blogs?filter=${category}&search=${search}`,
+        { withCredentials: true }
+      );
+
+      return data;
+    },
+  });
+
   return (
     <div className="py-8 min-h-screen mb-20 container mx-auto">
       <div className="">
@@ -31,8 +30,9 @@ const App = () => {
           </p>
         </div>
         <div className="mt-20">
-          <form action="" className="flex flex-row gap-5">
+          <div className="flex flex-row gap-5">
             <select
+              value={category}
               onChange={(e) => {
                 setCategory(e.target.value);
               }}
@@ -55,6 +55,7 @@ const App = () => {
                   setSearch(e.target.value);
                 }}
                 type="text"
+                value={search}
                 className="grow w-full"
                 placeholder="Search"
               />
@@ -71,14 +72,19 @@ const App = () => {
                 />
               </svg>
             </label>
-          </form>
+          </div>
         </div>
       </div>
-      <div className="grid xl:grid-cols-4 md:grid-cols-2 gap-5 my-10">
-        {blogs?.map((blog) => {
-          return <BlogCard key={blog._id} blogData={blog} />;
-        })}
-      </div>
+
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <div className="grid xl:grid-cols-4 md:grid-cols-2 gap-5 my-10">
+          {blogs?.map((blog) => {
+            return <BlogCard key={blog._id} blogData={blog} />;
+          })}
+        </div>
+      )}
     </div>
   );
 };

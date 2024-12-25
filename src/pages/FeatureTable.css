@@ -1,0 +1,44 @@
+
+/* Define CSS variables for easy reuse */
+:root {
+    --ka-background-color: #2c2c2c;
+    --ka-border-color: #4d4d4d;
+    --ka-cell-hover-background-color: rgba(255, 255, 255, 0.2); /* transparentize(#fff, 0.8) */
+    --ka-color-base: #fefefe;
+    --ka-input-background-color: var(--ka-background-color);
+    --ka-input-border-color: var(--ka-border-color);
+    --ka-input-color: var(--ka-color-base);
+    --ka-row-hover-background-color: rgba(255, 255, 255, 0.1); /* transparentize(#fff, 0.9) */
+    --ka-thead-background-color: #1b1b1b;
+    --ka-thead-color: #c5c5c5;
+  }
+  
+  /* Apply styles using the CSS variables */
+  .custom-theme-demo {
+    background-color: var(--ka-background-color);
+    border-color: var(--ka-border-color);
+  }
+  
+  .custom-theme-demo .ka-table {
+    background-color: var(--ka-background-color);
+  }
+  
+  .custom-theme-demo .ka-input {
+    background-color: var(--ka-input-background-color);
+    border-color: var(--ka-input-border-color);
+    color: var(--ka-input-color);
+  }
+  
+  .custom-theme-demo .ka-row:hover {
+    background-color: var(--ka-row-hover-background-color);
+  }
+  
+  .custom-theme-demo .ka-cell:hover {
+    background-color: var(--ka-cell-hover-background-color);
+  }
+  
+  .custom-theme-demo .ka-thead {
+    background-color: var(--ka-thead-background-color);
+    color: var(--ka-thead-color);
+  }
+  
