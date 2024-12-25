@@ -13,7 +13,7 @@ export default function AddBlogForm() {
     },
     onSuccess: ({ data }) => {
       console.log(data);
-      formRef.current.reset()
+      // formRef.current.reset()
     },
     onError: (error) => {
       console.log(error);

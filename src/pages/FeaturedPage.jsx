@@ -38,7 +38,8 @@ const SortingDemo = () => {
       <h1 className=" text-2xl font-medium text-gray-800 text-center py-20 bg-slate-100 mb-6">
         Featured Blogs
       </h1>
-      <div className="mx-auto max-w-5xl rounded-lg shadow-xl ">
+    <div className="px-4 ">
+    <div className="mx-auto max-w-4xl overflow-x-auto border border-gray-300 my-20">
         <Table
           columns={[
             {
@@ -46,7 +47,6 @@ const SortingDemo = () => {
               style: {
                 width: 220,
                 textAlign: "center",
-
                 padding: "12px",
                 borderRight: "1px solid rgba(0, 0, 0, 0.1)",
                 borderRadius: "8px",
@@ -56,7 +56,7 @@ const SortingDemo = () => {
             {
               key: "title",
               style: {
-                width: 100,
+                width: 250,
                 textAlign: "center",
 
                 padding: "12px",
@@ -117,6 +117,7 @@ const SortingDemo = () => {
                   borderRadius: "8px",
                   border: "1px solid rgba(0, 0, 0, 0.1)",
                   transition: "background-color 0.3s ease",
+                  overflowX: "auto"
                 },
                 title: `${rowData.title}: ${rowData.category}`,
               }),
@@ -124,6 +125,7 @@ const SortingDemo = () => {
           }}
         />
       </div>
+    </div>
     </div>
   );
 };

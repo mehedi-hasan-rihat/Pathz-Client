@@ -86,7 +86,7 @@ const handleDetails = () => {
           {title}
         </h2>
         <p className="text-gray-700 text-sm leading-relaxed">
-          {short_disc.slice(0, 350)}...
+          {short_disc?.slice(0, 350)}...
         </p>
         <div className="flex justify-between items-center">
           <button

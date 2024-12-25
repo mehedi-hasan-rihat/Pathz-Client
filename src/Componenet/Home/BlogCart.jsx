@@ -108,7 +108,7 @@ export default function BlogCart({ id, blogData }) {
               <CiLocationOn /> {location}
             </p>
           </div>
-          <p className="font-light mt-5">{short_disc}</p>
+          <p className="font-light mt-5">{short_disc?.slice(0,450)} .....</p>
 
           <div className="flex gap-3 my-5">
             <div

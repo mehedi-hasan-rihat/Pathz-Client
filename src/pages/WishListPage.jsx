@@ -47,7 +47,11 @@ export default function FeaturedPage() {
   }
 
   return (
-    <div className="overflow-x-auto my-16 px-1 rounded-xl text-sm sm:text-md min-h-[calc(100vh-500px)] max-w-5xl mx-auto">
+   <div className="">
+      <h1 className=" text-2xl font-medium text-gray-800 text-center py-20 bg-slate-100 mb-6">
+        Wishlisted Blogs
+      </h1>
+     <div className="overflow-x-auto my-16 px-1 rounded-xl text-sm sm:text-md min-h-[calc(100vh-500px)] max-w-5xl mx-auto">
       <table className="table-auto w-full border-collapse border border-gray-300">
         <thead className="bg-[#60A5FA] text-white">
           <tr className="text-center">
@@ -72,5 +76,6 @@ export default function FeaturedPage() {
         </tbody>
       </table>
     </div>
+   </div>
   );
 }
