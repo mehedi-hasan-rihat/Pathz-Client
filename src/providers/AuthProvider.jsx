@@ -62,7 +62,6 @@ const AuthProvider = ({ children }) => {
               withCredentials: true,
             }
           );
-          console.log(data);
         } catch (err) {
           console.log(err);
         }
@@ -72,7 +71,6 @@ const AuthProvider = ({ children }) => {
             "http://localhost:3000/jwt-clear",
             {withCredentials:true}
           );
-          console.log(data);
         } catch (err) {
           console.log(err);
         }

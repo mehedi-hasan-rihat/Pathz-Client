@@ -24,7 +24,8 @@ export default function Login() {
         });
         navigate(location.state ? location.state : "/");
       })
-      .catch((error) => {
+      .catch((error) => {   
+        console.log(error.message)
         Swal.fire({
           title: "Invalid email and password",
           text: "Please Enter Correct email and password",
@@ -88,7 +89,7 @@ export default function Login() {
                 console.log(error);
                 Swal.fire({
                   title: "Try again",
-                  text: "Can't signIn this tis time. Please try again",
+                  text: `${error.message}`,
                   icon: "error",
                 });
               });

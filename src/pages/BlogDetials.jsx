@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import Comment from "../Componenet/BlogDetails/Comment";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { GrDocumentUpdate } from "react-icons/gr";
 import { AuthContext } from "../providers/AuthProvider";
@@ -10,6 +10,7 @@ import { PhotoView } from "react-photo-view";
 export default function BlogDetials() {
   const [blog, setBlog] = useState([]);
   const { id } = useParams();
+  const navigate = useNavigate()
   const { user } = useContext(AuthContext);
   const [blogEmail, setBlogEmail] = useState("");
   const {
@@ -50,7 +51,7 @@ export default function BlogDetials() {
   }, []);
 
   const handleUpdate = () => {
-    console.log("update");
+    navigate(`/update/${id}`)
   };
 
   return (

@@ -20,16 +20,18 @@ const App = () => {
   });
 
   return (
-    <div className="py-8 min-h-screen mb-20 container mx-auto">
+    <div className="py-8 min-h-screen mb-20 ">
       <div className="">
-        <div className="text-center my-10 max-w-md md:max-w-lg xl:max-w-xl leading-5 mx-auto">
-          <h2 className="text-4xl font-bold leading-loose">All Travel Tales</h2>
+        <div className="text-center py-20 bg-slate-100">
+        <div className="max-w-md md:max-w-lg leading-6 mx-auto ">
+          <h2 className="text-2xl font-semibold leading-loose">All Travel Tales</h2>
           <p className="text-gray-600">
             Dive into a world of journeys—discover adventures, cultures, and
             unforgettable experiences from every blog.
           </p>
         </div>
-        <div className="mt-20">
+        </div>
+        <div className="mt-20 px-2 sm:px-0 container mx-auto">
           <div className="flex flex-row gap-5">
             <select
               value={category}
@@ -79,7 +81,7 @@ const App = () => {
       {isLoading ? (
         <Loader />
       ) : (
-        <div className="grid xl:grid-cols-4 md:grid-cols-2 gap-5 my-10">
+        <div className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 gap-5 my-10 container mx-auto">
           {blogs?.map((blog) => {
             return <BlogCard key={blog._id} blogData={blog} />;
           })}

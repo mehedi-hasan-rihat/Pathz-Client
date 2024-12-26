@@ -2,12 +2,12 @@ import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import { useParams } from "react-router-dom";
+import Swal from "sweetalert2";
 
 export default function UpdateBlogForm() {
   const { user } = useContext(AuthContext);
   const [blog, setBlog] = useState();
   const { id } = useParams();
-  console.log(id);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -35,7 +35,6 @@ export default function UpdateBlogForm() {
     _id,
   } = blog || {};
 
-  console.log(blog);
 
   const handleUpdate = (e) => {
     e.preventDefault();
@@ -56,6 +55,19 @@ export default function UpdateBlogForm() {
       .put(`http://localhost:3000/update/${id}`, blogData)
       .then(function (response) {
         console.log(response.data);
+        if(response.data.modifiedCount > 0){
+          Swal.fire({
+            title: "Data Updated Successfully",
+            text: " ",
+            icon: "success",
+          });
+        } else if(response.data.modifiedCount === 0 ){
+          Swal.fire({
+            title: "Please change something to update blog",
+            text: " ",
+            icon: "info",
+          });
+        }
       })
       .catch(function (error) {
         console.log(error);
@@ -74,7 +86,7 @@ export default function UpdateBlogForm() {
               defaultValue={title}
               name="title"
               type="text"
-              minLength='18'
+              minLength="18"
               placeholder="Title"
               className="input input-bordered"
               required
@@ -96,26 +108,28 @@ export default function UpdateBlogForm() {
         </div>
 
         <div className="flex gap-5">
-         {category &&  <div className="w-full">
-            <label className="label">
-              <span className="label-text">Category</span>
-            </label>
-            <select
-             defaultValue={blog?.category}
-              name="category"
-              className="select select-bordered w-full "
-            >
-              <option disabled>Filter by Category</option>
-              <option>Adventure</option>
-              <option>Cultural</option>
-              <option>Luxury</option>
-              <option>Budget Travel</option>
-              <option>Eco-Travel</option>
-              <option>Family-Travel</option>
-              <option>Urban-Exploration</option>
-              <option>Solo-Travel</option>
-            </select>
-          </div>}
+          {category && (
+            <div className="w-full">
+              <label className="label">
+                <span className="label-text">Category</span>
+              </label>
+              <select
+                defaultValue={blog?.category}
+                name="category"
+                className="select select-bordered w-full "
+              >
+                <option disabled>Filter by Category</option>
+                <option>Adventure</option>
+                <option>Cultural</option>
+                <option>Luxury</option>
+                <option>Budget Travel</option>
+                <option>Eco-Travel</option>
+                <option>Family-Travel</option>
+                <option>Urban-Exploration</option>
+                <option>Solo-Travel</option>
+              </select>
+            </div>
+          )}
           <div className="form-control w-full">
             <label className="label">
               <span className="label-text">Location</span>
@@ -138,7 +152,7 @@ export default function UpdateBlogForm() {
           <textarea
             defaultValue={short_disc}
             name="short_disc"
-              minLength='500'
+            minLength="400"
             className="textarea textarea-bordered min-h-28"
             placeholder="Shot discription about your travle"
           ></textarea>
@@ -150,7 +164,6 @@ export default function UpdateBlogForm() {
           <textarea
             defaultValue={long_disc?.join("\n")}
             name="long_disc"
-              minLength='1200'
             className="textarea textarea-bordered min-h-48"
             placeholder="Enter every tips in a new line"
           ></textarea>

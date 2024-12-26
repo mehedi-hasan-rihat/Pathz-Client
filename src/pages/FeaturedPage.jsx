@@ -42,17 +42,6 @@ const SortingDemo = () => {
         <Table
           columns={[
             {
-              key: "idx",
-              style: {
-                width: 100,
-                textAlign: "center",
-                padding: "12px",
-                borderRight: "1px solid rgba(0, 0, 0, 0.1)",
-                borderRadius: "8px",
-              },
-              title: "#",
-            },
-            {
               key: "title",
               style: {
                 width: 550,

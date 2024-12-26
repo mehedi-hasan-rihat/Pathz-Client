@@ -57,7 +57,7 @@ export default function SignIn() {
         console.log(error);
         Swal.fire({
           title: "Try again",
-          text: "Can't signIn this tis time. Please try again",
+          text: `${error.message}`,
           icon: "error",
         });
       });
@@ -142,7 +142,7 @@ export default function SignIn() {
                 console.log(error);
                 Swal.fire({
                   title: "Try again",
-                  text: "Can't signUp this tis time. Please try again",
+                  text: `${error.message}`,
                   icon: "error",
                 });
               });

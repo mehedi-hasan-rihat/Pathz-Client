@@ -39,7 +39,6 @@ export default function BlogCart({ id, blogData }) {
         "http://localhost:3000/add-watchlist",
         watchListData
       );
-      console.log(data);
       if (data.insertedId) {
         notify();
       }
