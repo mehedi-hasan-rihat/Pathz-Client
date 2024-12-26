@@ -2,6 +2,8 @@ import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+
 const BlogDetails = () => {
   const {user} = useContext(AuthContext)
   const [comments, setComments] = useState([]);
@@ -15,12 +17,14 @@ const BlogDetails = () => {
       console.log(err);
     }
   };
+
+  const axiosSecure = useAxiosSecure()
   useEffect(() => {
     fetchData();
     const fetchEmail = async () => {
       try {
-        const { data } = await axios.get(`http://localhost:3000/blog/${id}`);
-        setBlogEmail(data.email);
+        const { data } = await axiosSecure.get(`http://localhost:3000/blog/${id}`);
+        setBlogEmail(data.userInfo.email);
       } catch (err) {
         console.log(err);
       }

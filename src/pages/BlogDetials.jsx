@@ -6,13 +6,17 @@ import { GrDocumentUpdate } from "react-icons/gr";
 import { AuthContext } from "../providers/AuthProvider";
 import { format } from "date-fns";
 import { PhotoView } from "react-photo-view";
+import useAxiosSecure from "../hooks/useAxiosSecure";
+import Loader from "../Componenet/Loader";
 
 export default function BlogDetials() {
   const [blog, setBlog] = useState([]);
   const { id } = useParams();
+  const {loading} = useContext(AuthContext)
   const navigate = useNavigate()
   const { user } = useContext(AuthContext);
   const [blogEmail, setBlogEmail] = useState("");
+  const axiosSecure = useAxiosSecure()
   const {
     category,
     cover_img,
@@ -31,28 +35,24 @@ export default function BlogDetials() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } = await axios.get(`http://localhost:3000/blog/${id}`);
+        const { data } = await axiosSecure.get(`/blog/${id}`);
+  
+        setBlogEmail(data?.userInfo.email)
         setBlog(data);
       } catch (err) {
         console.log(err);
       }
     };
     fetchData();
-    const fetchEmail = async () => {
-      try {
-        const { data } = await axios.get(`http://localhost:3000/blog/${id}`);
-        setBlogEmail(data.userInfo?.email);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-
-    fetchEmail();
   }, []);
 
   const handleUpdate = () => {
     navigate(`/update/${id}`)
   };
+
+  if(loading){
+   return <Loader/>
+  }
 
   return (
     <div className="bg-[#FDFDFF]">
@@ -69,6 +69,7 @@ export default function BlogDetials() {
       </div>
 
       <div className="min-h-screen relative -top-14 py-12 max-w-4xl px-5 bg-white mx-auto">
+      {console.log(blog)}
         {blogEmail === user?.email && (
           <div
             onClick={handleUpdate}

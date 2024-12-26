@@ -3,6 +3,7 @@ import React, { useContext, useRef } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 export default function AddBlogForm() {
   const { user } = useContext(AuthContext);
@@ -16,12 +17,13 @@ export default function AddBlogForm() {
       },
     });
 
+    const axiosSecure = useAxiosSecure()
+
   const { isPending, mutateAsync } = useMutation({
     mutationFn: (blogData) => {
-      return axios.post("http://localhost:3000/add-blog", blogData);
+      return axiosSecure.post("/add-blog", blogData);
     },
     onSuccess: ({ data }) => {
-      console.log(data);
       formRef.current.reset();
       if (data.insertedId) {
         notify();

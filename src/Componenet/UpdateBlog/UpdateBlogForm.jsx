@@ -3,15 +3,17 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 export default function UpdateBlogForm() {
   const { user } = useContext(AuthContext);
   const [blog, setBlog] = useState();
   const { id } = useParams();
+  const axiosSecure = useAxiosSecure()
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } = await axios.get(`http://localhost:3000/blog/${id}`);
+        const { data } = await axiosSecure.get(`/blog/${id}`);
         setBlog(data);
       } catch (err) {
         console.log(err);
@@ -51,8 +53,8 @@ export default function UpdateBlogForm() {
 
     const blogData = { userInfo, ...formObject };
     console.log(blogData);
-    axios
-      .put(`http://localhost:3000/update/${id}`, blogData)
+    axiosSecure
+      .put(`/update/${id}`, blogData)
       .then(function (response) {
         console.log(response.data);
         if(response.data.modifiedCount > 0){
