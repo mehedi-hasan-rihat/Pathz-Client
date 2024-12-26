@@ -35,7 +35,7 @@ export default function BlogDetials() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } = await axiosSecure.get(`/blog/${id}`);
+        const { data } = await axios.get(`https://pathz.vercel.app/blog/${id}`);
   
         setBlogEmail(data?.userInfo.email)
         setBlog(data);
@@ -83,7 +83,7 @@ export default function BlogDetials() {
         )}
         <div className="">
           <div className="px-5">
-            <h2 className="text-md sm:text-xl md:text-4xl font-normal">{title}</h2>
+            <h2 className="text-md sm:text-xl md:text-3xl font-normal leading-loose max-w-3xl">{title}</h2>
             <p className="mt-2 font-normal">
               Category : <span className="font-light">{category}</span>
             </p>

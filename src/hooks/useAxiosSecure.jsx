@@ -4,13 +4,12 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
 import toast from "react-hot-toast";
 export const axiosSecure = axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: "https://pathz.vercel.app",
   withCredentials: true,
 });
 
 const useAxiosSecure = () => {
   const navigate = useNavigate();
-
 
   const { logOut } = useContext(AuthContext);
   useEffect(() => {

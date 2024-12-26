@@ -7,6 +7,7 @@ import { AuthContext } from "../../providers/AuthProvider";
 import { toast } from "react-hot-toast";
 import { motion } from "motion/react";
 import { PhotoView } from "react-photo-view";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 export default function BlogCart({ id, blogData }) {
   const { title, short_disc, img, _id, location } = blogData;
@@ -25,6 +26,9 @@ export default function BlogCart({ id, blogData }) {
     navigate(`/blog/${_id}`);
   };
 
+  const axiosSecure = useAxiosSecure()
+
+
   const handleAddWishList = async () => {
     const watchListData = {
       blogId: _id,
@@ -35,8 +39,8 @@ export default function BlogCart({ id, blogData }) {
       },
     };
     try {
-      const { data } = await axios.post(
-        "http://localhost:3000/add-watchlist",
+      const { data } = await axiosSecure.post(
+        "https://pathz.vercel.app/add-watchlist",
         watchListData
       );
       if (data.insertedId) {

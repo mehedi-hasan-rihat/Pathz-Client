@@ -7,7 +7,7 @@ import Loader from "../Loader";
 export default function RecentBlog() {
 
   const {data : blogs, isLoading} = useQuery({ queryKey: ['recent-blogs'], queryFn: async () => {
-    const { data } = await axios.get("http://localhost:3000/recent-blog");
+    const { data } = await axios.get("https://pathz.vercel.app/recent-blog");
     return data
   }})
 
@@ -25,9 +25,9 @@ export default function RecentBlog() {
            duration: 0.4,
            scale: { type: "spring", visualDuration: 0.6, bounce: 0.4 },
          }}
-      className=" text-center mt-28 sm:mt-36 mb-10 sm:mb-20 md:mb-28 max-w-sm mx-auto">
-        <h2 className="text-2xl lg:text-3xl xl:text-5xl font-medium">Recent Insights</h2>
-        <p className="mt-3 text-lg"> Explore the Latest Insights, Tips, and Stories from Our Recent Blogs</p>
+      className=" mx-auto text-center max-w-xl my-10">
+        <h2 className="text-xl sm:text-3xl font-semibold">Recent Insights</h2>
+        <p className="font-light mt-2"> Explore the Latest Insights, Tips, and Stories from Our Recent Blogs</p>
       </motion.div>
       <div className="">
        {

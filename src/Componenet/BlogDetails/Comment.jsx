@@ -11,7 +11,7 @@ const BlogDetails = () => {
   const { id } = useParams();
   const fetchData = async () => {
     try {
-      const { data } = await axios.get(`http://localhost:3000/comments/${id}`);
+      const { data } = await axios.get(`https://pathz.vercel.app/comments/${id}`);
       setComments(data);
     } catch (err) {
       console.log(err);
@@ -23,7 +23,7 @@ const BlogDetails = () => {
     fetchData();
     const fetchEmail = async () => {
       try {
-        const { data } = await axiosSecure.get(`http://localhost:3000/blog/${id}`);
+        const { data } = await axiosSecure.get(`https://pathz.vercel.app/blog/${id}`);
         setBlogEmail(data.userInfo.email);
       } catch (err) {
         console.log(err);
@@ -45,7 +45,7 @@ const BlogDetails = () => {
 
     console.log(commentData)
     try {
-      const { data } = await axios.post(`http://localhost:3000/add-comment/${id}`,commentData);
+      const { data } = await axios.post(`https://pathz.vercel.app/add-comment/${id}`,commentData);
       console.log(data)
       fetchData()
     } catch (err) {

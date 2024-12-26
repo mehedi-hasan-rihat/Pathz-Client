@@ -1,5 +1,5 @@
 import { Table } from "ka-table";
-import { SortingMode } from "ka-table/enums";
+import { SortingMode, SortDirection } from "ka-table/enums";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
@@ -14,7 +14,7 @@ const SortingDemo = () => {
   } = useQuery({
     queryKey: ["topBlogs"],
     queryFn: async () => {
-      const { data } = await axios.get(`http://localhost:3000/feature`);
+      const { data } = await axios.get(`https://pathz.vercel.app/feature`);
       console.log(data);
       return data;
     },
@@ -38,15 +38,15 @@ const SortingDemo = () => {
         Featured Blogs
       </h1>
     <div className="">
-    <div className="mx-auto w-[98%] overflow-x-auto border border-gray-300 mb-20 mt-10">
+    <div className="mx-auto w-[80%] overflow-x-auto border border-gray-300 mb-20 mt-10">
         <Table
           columns={[
             {
               key: "title",
+              sortDirection: SortDirection.Ascend,
               style: {
-                width: 550,
+                width: 680,
                 textAlign: "center",
-
                 padding: "12px",
                 borderRight: "1px solid rgba(0, 0, 0, 0.1)",
                 borderRadius: "8px",
@@ -55,10 +55,10 @@ const SortingDemo = () => {
             },
             {
               key: "category",
+              sortDirection: SortDirection.Ascend,
               style: {
                 width: 380,
                 textAlign: "center",
-
                 padding: "12px",
                 borderRight: "1px solid rgba(0, 0, 0, 0.1)",
                 borderRadius: "8px",
@@ -67,10 +67,10 @@ const SortingDemo = () => {
             },
             {
               key: "location",
+              sortDirection: SortDirection.Ascend,
               style: {
                 width: 450,
                 textAlign: "center",
-
                 padding: "12px",
                 borderRight: "1px solid rgba(0, 0, 0, 0.1)",
                 borderRadius: "8px",
@@ -79,6 +79,7 @@ const SortingDemo = () => {
             },
             {
               key: "userInfo.name",
+              sortDirection: SortDirection.Ascend,
               style: {
                 width: 520,
                 textAlign: "center",

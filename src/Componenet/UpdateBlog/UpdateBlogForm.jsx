@@ -13,7 +13,7 @@ export default function UpdateBlogForm() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } = await axiosSecure.get(`/blog/${id}`);
+        const { data } = await axios.get(`https://pathz.vercel.app/blog/${id}`);
         setBlog(data);
       } catch (err) {
         console.log(err);
