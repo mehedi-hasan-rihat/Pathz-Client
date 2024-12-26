@@ -55,6 +55,11 @@ export default function SignIn() {
       })
       .catch((error) => {
         console.log(error);
+        Swal.fire({
+          title: "Try again",
+          text: "Can't signIn this tis time. Please try again",
+          icon: "error",
+        });
       });
   };
   return (

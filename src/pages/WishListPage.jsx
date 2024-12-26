@@ -48,17 +48,19 @@ export default function FeaturedPage() {
 
   return (
    <div className="">
-      <h1 className=" text-2xl font-medium text-gray-800 text-center py-20 bg-slate-100 mb-6">
+      <h1 className=" text-2xl font-medium text-gray-800 text-center py-20 bg-slate-100 mb-3">
         Wishlisted Blogs
       </h1>
-     <div className="overflow-x-auto my-16 px-1 rounded-xl text-sm sm:text-md min-h-[calc(100vh-500px)] max-w-5xl mx-auto">
+     <div className="overflow-x-auto my-16 rounded-xl text-sm sm:text-md min-h-[calc(100vh-500px)] px-2">
       <table className="table-auto w-full border-collapse border border-gray-300">
         <thead className="bg-[#60A5FA] text-white">
           <tr className="text-center">
             <th className="p-4">#</th>
-            <th className="p-4 ">Title</th>
-            <th className="p-4">Long Description</th>
+            <th className="p-4">Title</th>
             <th className="p-4">Category</th>
+            <th className="p-4">Location</th>
+            <th className="p-4 ">Blogerr Name</th>
+            <th className="p-4 ">Activity</th>
           </tr>
         </thead>
         <tbody>
@@ -69,8 +71,10 @@ export default function FeaturedPage() {
             >
               <td className="p-4 text-center">{index + 1}</td>
               <td className="p-4">{wish?.title}</td>
-              <td className="p-4">{wish?.long_disc}</td>
-              <td className="p-4 text-center">{wish?.category}</td>
+              <td className="p-4">{wish?.category}</td>
+              <td className="p-4 text-center">{wish?.location}</td>
+              <td className="p-4 text-center">{wish?.userInfo.name}</td>
+              <td className="p-4 text-center">{wish?.userInfo.name}</td>
             </tr>
           ))}
         </tbody>

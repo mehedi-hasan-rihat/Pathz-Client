@@ -7,7 +7,7 @@ import Resort from "../Componenet/Home/Resort";
 export default function HomePage() {
   return (
     <div className="overflow-hidden">
-      <Banner />
+      <Banner/>
       <RecentBlog />
       <NewsLetter />
       <Resort />

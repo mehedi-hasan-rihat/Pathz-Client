@@ -4,7 +4,6 @@ import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import Loader from "../Componenet/Loader";
-import "./FeatureTable.css";
 
 const SortingDemo = () => {
   const {
@@ -35,28 +34,28 @@ const SortingDemo = () => {
 
   return (
     <div className="">
-      <h1 className=" text-2xl font-medium text-gray-800 text-center py-20 bg-slate-100 mb-6">
+      <h1 className=" text-2xl font-medium text-gray-800 text-center py-20 bg-slate-100 mb-3">
         Featured Blogs
       </h1>
-    <div className="px-4 ">
-    <div className="mx-auto max-w-4xl overflow-x-auto border border-gray-300 my-20">
+    <div className="">
+    <div className="mx-auto w-[98%] overflow-x-auto border border-gray-300 mb-20 mt-10">
         <Table
           columns={[
             {
-              key: "userInfo.name",
+              key: "idx",
               style: {
-                width: 220,
+                width: 100,
                 textAlign: "center",
                 padding: "12px",
                 borderRight: "1px solid rgba(0, 0, 0, 0.1)",
                 borderRadius: "8px",
               },
-              title: "Name",
+              title: "#",
             },
             {
               key: "title",
               style: {
-                width: 250,
+                width: 550,
                 textAlign: "center",
 
                 padding: "12px",
@@ -68,7 +67,7 @@ const SortingDemo = () => {
             {
               key: "category",
               style: {
-                width: 180,
+                width: 380,
                 textAlign: "center",
 
                 padding: "12px",
@@ -80,7 +79,7 @@ const SortingDemo = () => {
             {
               key: "location",
               style: {
-                width: 150,
+                width: 450,
                 textAlign: "center",
 
                 padding: "12px",
@@ -90,16 +89,15 @@ const SortingDemo = () => {
               title: "Location",
             },
             {
-              key: "userInfo.date",
+              key: "userInfo.name",
               style: {
-                width: 180,
+                width: 520,
                 textAlign: "center",
-
                 padding: "12px",
                 borderRight: "1px solid rgba(0, 0, 0, 0.1)",
                 borderRadius: "8px",
               },
-              title: "Date",
+              title: "Bloger Name",
             },
           ]}
           data={dataArray}

@@ -1,5 +1,4 @@
 import { createBrowserRouter } from 'react-router-dom'
-import ErrorPage from '../Componenet/ErrorPage'
 import React from 'react'
 import Mainlayout from '../layout/Mainlayout'
 import HomePage from '../pages/HomePage'
@@ -13,6 +12,7 @@ import AuthLayout from '../layout/AuthLayout'
 import SignIn from '../pages/AuthPages/SignIn'
 import SignUp from '../pages/AuthPages/SignUp'
 import PrivateRoute from './PrivateRoute'
+import ErrorPage from '../pages/ErrorPage'
 const router = createBrowserRouter([
   {
     path: '/',

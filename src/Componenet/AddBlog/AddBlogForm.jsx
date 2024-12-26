@@ -2,10 +2,19 @@ import axios from "axios";
 import React, { useContext, useRef } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import { useMutation } from "@tanstack/react-query";
+import toast from "react-hot-toast";
 
 export default function AddBlogForm() {
   const { user } = useContext(AuthContext);
   const formRef = useRef(null);
+  const notify = () =>
+    toast("Blog succesfully added", {
+      duration: 4000,
+      position: "top-center",
+      style: {
+        background: "#D9EAFD",
+      },
+    });
 
   const { isPending, mutateAsync } = useMutation({
     mutationFn: (blogData) => {
@@ -13,7 +22,10 @@ export default function AddBlogForm() {
     },
     onSuccess: ({ data }) => {
       console.log(data);
-      // formRef.current.reset()
+      formRef.current.reset();
+      if (data.insertedId) {
+        notify();
+      }
     },
     onError: (error) => {
       console.log(error);
@@ -41,12 +53,12 @@ export default function AddBlogForm() {
     <div className="max-w-5xl mt-5 mx-auto">
       <form ref={formRef} className="card-body" onSubmit={handleSubmit}>
         <div className="flex gap-5">
-          <div className="form-control w-full">
+          <div className="form-control w-[48%] sm:w-full">
             <label className="label">
               <span className="label-text">Title</span>
             </label>
             <input
-            minLength='18'
+              minLength="18"
               name="title"
               type="text"
               placeholder="Title"
@@ -54,7 +66,7 @@ export default function AddBlogForm() {
               required
             />
           </div>
-          <div className="form-control w-full">
+          <div className="form-control w-[48%] sm:w-full">
             <label className="label">
               <span className="label-text">Cover Img Link</span>
             </label>
@@ -107,7 +119,7 @@ export default function AddBlogForm() {
             <span className="label-text">Short Description</span>
           </label>
           <textarea
-          minLength="400"
+            minLength="400"
             name="short_disc"
             className="textarea textarea-bordered min-h-28"
             placeholder="Shot discription about your travle"
@@ -118,8 +130,8 @@ export default function AddBlogForm() {
             <span className="label-text">Long Description</span>
           </label>
           <textarea
-          // minLength="1200"
-          required
+            // minLength="1200"
+            required
             name="long_disc"
             className="textarea textarea-bordered min-h-48"
             placeholder="Enter every tips in a new line"

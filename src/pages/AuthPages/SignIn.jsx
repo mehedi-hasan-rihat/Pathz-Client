@@ -62,7 +62,7 @@ export default function Login() {
         </div>
 
         <Link
-          to="/auth/registration"
+          to="/auth/signup"
           className="relative -top-3 font-semibold text-xs hover:underline hover:text-gray-500"
         >
           Click for Registration

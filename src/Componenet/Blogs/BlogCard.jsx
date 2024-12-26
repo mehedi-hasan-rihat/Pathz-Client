@@ -75,14 +75,14 @@ const handleDetails = () => {
         >
           ❤️
         </div>
-        <div className="absolute bottom-4 left-4 bg-blue-500 text-white text-sm px-3 py-1 rounded-full shadow-lg">
+        <div className="absolute bottom-4 left-4 bg-blue-500 text-white font-medium text-sm px-3 py-1 rounded-full shadow-lg">
           {category}
         </div>
       </div>
 
       {/* Content Section */}
       <div className="p-6 space-y-3">
-        <h2 className="text-2xl font-semibold text-gray-800 tracking-wide">
+        <h2 className="text-xl md:text-2xl font-semibold text-gray-800 tracking-wide">
           {title}
         </h2>
         <p className="text-gray-700 text-sm leading-relaxed">

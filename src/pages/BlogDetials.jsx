@@ -74,14 +74,14 @@ export default function BlogDetials() {
             data-tooltip-id="my-tooltip"
             data-tooltip-content={"Update Your Blog"}
             data-tooltip-place="left"
-            className="absolute right-10 ring-2 ring-gray-300 bg-blue-100 text-2xl p-2 rounded-full hover:shadow-xl duration-300 hover:scale-110"
+            className="absolute right-1 sm:right-5 top-16 ring-2 ring-gray-300 bg-blue-100 text-lg md:text-2xl p-2 rounded-full hover:shadow-xl duration-300 hover:scale-110"
           >
             <GrDocumentUpdate />
           </div>
         )}
         <div className="">
           <div className="px-5">
-            <h2 className="text-4xl lg:text-5xl font-normal">{title}</h2>
+            <h2 className="text-md sm:text-xl md:text-4xl font-normal">{title}</h2>
             <p className="mt-2 font-normal">
               Category : <span className="font-light">{category}</span>
             </p>
@@ -108,7 +108,7 @@ export default function BlogDetials() {
             </div>
           </div>
           <div className="border-t border-gray-200 mt-10"></div>
-          <div className="px-16 mt-16 font-light">
+          <div className="md:px-16 mt-16 font-light">
             <div className="leading-relaxed">
               <p>{short_disc}</p>
               <p className="text-3xl font-medium mt-10 mb-6">{location}</p>

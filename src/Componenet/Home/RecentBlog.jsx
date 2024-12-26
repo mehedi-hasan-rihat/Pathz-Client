@@ -14,7 +14,6 @@ export default function RecentBlog() {
   if(isLoading){
     return <Loader/>
   }
-  console.log(blogs)
 
   return (
     <div className="my-32">
@@ -26,8 +25,8 @@ export default function RecentBlog() {
            duration: 0.4,
            scale: { type: "spring", visualDuration: 0.6, bounce: 0.4 },
          }}
-      className=" text-center mt-36 mb-28">
-        <h2 className="text-5xl font-medium">Recent Insights</h2>
+      className=" text-center mt-28 sm:mt-36 mb-10 sm:mb-20 md:mb-28 max-w-sm mx-auto">
+        <h2 className="text-2xl lg:text-3xl xl:text-5xl font-medium">Recent Insights</h2>
         <p className="mt-3 text-lg"> Explore the Latest Insights, Tips, and Stories from Our Recent Blogs</p>
       </motion.div>
       <div className="">

@@ -62,7 +62,7 @@ export default function BlogCart({ id, blogData }) {
           duration: 0.4,
           scale: { type: "spring", visualDuration: 0.8, bounce: 0.4 },
         }}
-        className={`px-20 my-10 lg:my-14 flex xl:items-center gap-5 lg:gap-10 ${
+        className={`px-3 sm:px-7 md:px-20 my-10 lg:my-14 flex xl:items-center gap-5 lg:gap-10 ${
           id % 2 === 0
             ? " flex-col  xl:flex-row"
             : "flex-col xl:flex-row-reverse"
@@ -101,10 +101,10 @@ export default function BlogCart({ id, blogData }) {
           </animated.div>
         </div>
         <div className="flex-1">
-          <div className="flex justify-between flex-col md:flex-row mr-16 xl:flex-col gap-2">
-            <h2 className="font-medium text-gray-800 text-4xl">{title}</h2>
+          <div className="mr-16 xl:flex-col">
+            <h2 className="font-medium text-gray-800 text-lg sm:text-xl md:text-3xl lg:text-4xl">{title}</h2>
 
-            <p className="flex items-center gap-2">
+            <p className="flex items-center gap-2 mt-2">
               <CiLocationOn /> {location}
             </p>
           </div>

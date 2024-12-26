@@ -64,7 +64,7 @@ export default function Navbar() {
               : "border border-gray-200 rounded-md text-black"
           }
         >
-          <p className="p-1">Feature</p>
+          <p className="p-1">Featured</p>
         </NavLink>
       </li>
     </div>
