@@ -11,7 +11,7 @@ const App = () => {
     queryKey: ["blogs", category, search],
     queryFn: async () => {
       const { data } = await axios.get(
-        `https://pathz.vercel.app/blogs?filter=${category}&search=${search}`,
+        `http://localhost:5000/blogs?filter=${category}&search=${search}`,
         { withCredentials: true }
       );
 

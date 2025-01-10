@@ -14,7 +14,7 @@ const SortingDemo = () => {
   } = useQuery({
     queryKey: ["topBlogs"],
     queryFn: async () => {
-      const { data } = await axios.get(`https://pathz.vercel.app/feature`);
+      const { data } = await axios.get(`http://localhost:5000/feature`);
       console.log(data);
       return data;
     },

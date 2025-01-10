@@ -24,7 +24,7 @@ export default function BlogCart({ id, blogData }) {
 
   const handleDetails = () => {
     navigate(`/blog/${_id}`);
-  };
+  }; 
 
   const axiosSecure = useAxiosSecure()
 
@@ -40,7 +40,7 @@ export default function BlogCart({ id, blogData }) {
     };
     try {
       const { data } = await axiosSecure.post(
-        "https://pathz.vercel.app/add-watchlist",
+        "http://localhost:5000/add-watchlist",
         watchListData
       );
       if (data.insertedId) {
@@ -57,7 +57,7 @@ export default function BlogCart({ id, blogData }) {
   }));
 
   return (
-    <div className="mx-auto max-w-7xl">
+    <div className="">
       <motion.div
         initial={{ opacity: 0, scale: 0, ...(id % 2 === 0 ? { x: -100 } : { x: 100 })}}
         animate={{ opacity: 1, scale: 1, x: 0 }}

@@ -1,11 +1,11 @@
-import React, { useRef } from "react";
-import { useMotionValue, useTransform, motion } from "motion/react";
+import React from "react";
+import { motion } from "motion/react";
 export default function Banner() {
  
   return (
     <div className="">
       <div
-        className="bg-banner-img relative h-[540px] md:h-[560px] xl:h-[780px] bg-cover bg-center grid place-items-center text-center my-2"
+        className="bg-banner-img relative h-[540px] md:h-[520px] xl:h-[700px] bg-cover bg-center grid place-items-center text-center mb-2"
       >
         <motion.div
        initial={{ opacity: 0, scale: 0 }}

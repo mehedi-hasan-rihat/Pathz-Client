@@ -35,7 +35,7 @@ export default function BlogDetials() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } = await axios.get(`https://pathz.vercel.app/blog/${id}`);
+        const { data } = await axios.get(`http://localhost:5000/blog/${id}`);
   
         setBlogEmail(data?.userInfo.email)
         setBlog(data);

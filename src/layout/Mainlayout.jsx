@@ -24,7 +24,7 @@ export default function Mainlayout() {
           height:4,
           originX: 0,
           zIndex : 100,
-          backgroundColor: "#60A5FA",
+          backgroundColor: "#007BFF",
         }}
       />
 

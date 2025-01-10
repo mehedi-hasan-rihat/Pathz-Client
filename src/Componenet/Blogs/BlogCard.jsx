@@ -40,7 +40,7 @@ const BlogCard = ({blogData}) => {
     };
     try {
       const { data } = await axios.post(
-        "https://pathz.vercel.app/add-watchlist",
+        "http://localhost:5000/add-watchlist",
         watchListData
       );
       console.log(data);

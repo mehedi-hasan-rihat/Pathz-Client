@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
 import toast from "react-hot-toast";
 export const axiosSecure = axios.create({
-  baseURL: "https://pathz.vercel.app",
+  baseURL: "http://localhost:5000",
   withCredentials: true,
 });
 

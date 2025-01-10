@@ -55,7 +55,7 @@ export default function FeaturedPage() {
 
   const handleDelete = async (id) => {
     try {
-      const { data } = await axios.delete(`https://pathz.vercel.app/delete/${id}`);
+      const { data } = await axios.delete(`http://localhost:5000/delete/${id}`);
       console.log(data);
       if (data.deletedCount > 0) {
 
