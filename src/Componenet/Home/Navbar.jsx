@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
+import toast from "react-hot-toast";
 
 export default function Navbar() {
-  const { user, logOut } = useContext(AuthContext);
+  const { user, logOut  } = useContext(AuthContext);
   const navigate = useNavigate();
   const listItem = (
     <div className="flex flex-col items-center lg:flex-row gap-2 text-[17px]   nunito-font font-semibold ">
@@ -44,7 +45,7 @@ export default function Navbar() {
           <p className="p-1 nunito-font">Wishlist</p>
         </NavLink>}
   
-      {user &&   <NavLink
+       <NavLink
           to="/feature"
           className={({ isActive }) =>
             `p-1 hover:text-[#4aa0fdda] ${
@@ -52,7 +53,7 @@ export default function Navbar() {
             }`
           }>
           <p className="p-1 nunito-font">Featured</p>
-        </NavLink>}
+        </NavLink>
 
     </div>
   );
@@ -105,26 +106,27 @@ export default function Navbar() {
               <div
                 onClick={() => {
                   logOut();
+                  toast.success("Succesfully Logout !")
                   navigate("/");
                 }}
                
               >
-                <span className="block bg-[#007BFF] /80 px-6 py-2 text-[17px] font-medium group-hover:bg-transparent">
-                  Log Out
+                <span className="block cursor-pointer bg-[#007BFF] /80 px-6 py-2 text-[17px] font-medium group-hover:bg-transparent">
+                  Logout
                 </span>
               </div>
             </div>
           ) : (
-            <div className="flex gap-2 items-center justify-center">
+            <div className="flex gap-2 items-center justify-end">
               <Link
                 to="/auth/login"
-                className="btn border-blue-300 dark:text-black dark:bg-gray-300"
+                className="block cursor-pointer bg-[#007BFF] /80 px-6 py-2 text-[17px] font-medium group-hover:bg-transparent"
               >
                 Login
               </Link>
               <Link
                 to="/auth/signUp"
-                className="btn border-blue-300 dark:text-black dark:bg-gray-300"
+                className="block cursor-pointer bg-[#007BFF] /80 px-6 py-2 text-[17px] font-medium group-hover:bg-transparent"
               >
                 Registration
               </Link>

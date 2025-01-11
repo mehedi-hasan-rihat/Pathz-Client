@@ -4,6 +4,8 @@ import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import Loader from "../Componenet/Loader";
+import PageTitle from "../Componenet/PageTitle";
+import { Helmet } from "react-helmet-async";
 
 const SortingDemo = () => {
   const {
@@ -34,9 +36,10 @@ const SortingDemo = () => {
 
   return (
     <div className="">
-      <h1 className=" text-2xl font-medium text-gray-800 text-center py-20 bg-slate-100 mb-3">
-        Featured Blogs
-      </h1>
+         <Helmet>
+              <title>Pathz-| Featured page</title>
+            </Helmet>
+      <PageTitle title={"⭐ Featured Adventures"} subTitle={'Discover the top 10 must-read travel stories and guides handpicked for you. Explore the journeys that have inspired countless travelers around the world!'}/>
     <div className="">
     <div className="mx-auto w-[80%] overflow-x-auto border border-gray-300 mb-20 mt-10">
         <Table

@@ -3,6 +3,8 @@ import BlogCard from "../Componenet/Blogs/BlogCard";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import Loader from "../Componenet/Loader";
+import PageTitle from "../Componenet/PageTitle";
+import { Helmet } from "react-helmet-async";
 
 const App = () => {
   const [search, setSearch] = useState("");
@@ -20,17 +22,12 @@ const App = () => {
   });
 
   return (
-    <div className="py-8 min-h-screen mb-20 ">
+    <div className="pb-8 px-3 min-h-screen mb-20 ">
+         <Helmet>
+        <title>Pathz - All Blogs</title>
+      </Helmet>
       <div className="">
-        <div className="text-center py-20 bg-slate-100">
-        <div className="max-w-md md:max-w-lg leading-6 mx-auto ">
-          <h2 className="text-2xl font-semibold leading-loose">All Travel Tales</h2>
-          <p className="text-gray-600">
-            Dive into a world of journeys—discover adventures, cultures, and
-            unforgettable experiences from every blog.
-          </p>
-        </div>
-        </div>
+      <PageTitle title={"🌍 Explore Inspiring Journeys"} subTitle={'Discover a world of adventures, tips, and stories shared by passionate travelers. Let their experiences guide your next unforgettable journey'}/>
         <div className="mt-20 px-2 sm:px-0 container mx-auto">
           <div className="flex flex-row gap-5">
             <select

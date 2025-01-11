@@ -16,25 +16,9 @@ export default function RecentBlog() {
   }
 
   return (
-    <div className="my-[90px] max-w-6xl mx-auto">
-      {/* <motion.div
-         initial={{ opacity: 0, scale: 0, y : 100 }}
-         animate={{ opacity: 1, scale: 1, y:0 }}
-         exit={{ opacity: 0 }}
-         transition={{
-           duration: 0.4,
-           scale: { type: "spring", visualDuration: 0.6, bounce: 0.4 },
-         }}
-      className=" mx-auto text-center container">
-      <div className=" flex items-center text-center gap-16">
-        <span className="border-t-2 bg-green-800 border-gray-200 flex-1"></span>
-        <span className="text-xl sm:text-3xl lg:text-5xl font-bold">Recent Insights</span>
-        <span className="border-t-2 flex-1 border-gray-200"></span>
-      </div>
-        <p className="mt-5 text-gray-700 text-xl"> Explore the Latest Insights, Tips, and Stories from Our Recent Blogs</p>
-      </motion.div> */}
-      <SectionHeading subHeading={"Explore the Latest Insights, Tips, and Stories from Our Recent Blogs"} Heading={"Recent Insights"}></SectionHeading>
-      <div className="mx-auto max-w-7xl">
+    <div className="max-w-7xl mx-auto ">
+      <SectionHeading subHeading={"Stay updated with our most recent adventures, destination guides, and travel tips, bringing you closer to your next unforgettable journey"} Heading={"Latest Travel Stories and Destinations"}></SectionHeading>
+      <div className="px-10 grid grid-cols-1">
        {blogs ? 
         blogs?.map((blog, idx) => {
           return (

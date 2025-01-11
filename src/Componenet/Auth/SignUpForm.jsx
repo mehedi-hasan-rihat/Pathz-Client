@@ -63,7 +63,9 @@ export default function SignIn() {
       });
   };
   return (
-    <div className="max-w-xl mx-auto bg-gray-100/50 my-10 rounded-lg">
+    
+<section className="relative flex flex-wrap lg:h-screen lg:items-center max-w-7xl mx-auto">
+<div className="flex-1 max-w-5xl shadow-md mx-20 bg-gray-100/50 my-10 rounded-lg">
       <form className="card-body" onSubmit={handleSubmit}>
         <div className="form-control">
           <label className="label">
@@ -155,5 +157,15 @@ export default function SignIn() {
         </div>
       </form>
     </div>
+  <div className="relative h-64 flex-1 sm:h-96 lg:h-full lg:w-1/2">
+    <img
+      alt=""
+      src="https://img.freepik.com/premium-vector/sign-up-concept-illustration-free-vector_269560-12.jpg?uid=R122104271&ga=GA1.1.222521603.1736143886&semt=ais_hybrid"
+      className="absolute inset-0 h-full w-full object-contain"
+    />
+  </div>
+</section>
+   
+
   );
 }

@@ -4,12 +4,12 @@ import toast from "react-hot-toast";
 import groovyWalkAnimation from "../../assets/Lottie/newsletter-lottie.json";
 export default function NewsLetter() {
   const notify = () =>
-    toast("Thank you for subscribing to our newslettert", {
+    toast("Thank you for subscribing to our Newslettert", {
       duration: 4000,
       position: "top-center",
       style: {
-        background: '#D4EDDA',
-        color: '#155724', 
+        background: '#007BFF',
+        color: '#fff', 
       },
     });
 
@@ -21,7 +21,7 @@ export default function NewsLetter() {
     }
 
   return (
-  <div className="bg-[#f1f1e7] py-2 my-20">
+  <div className="bg-[#ecf5ff] py-2 my-20">
       <div className=" xl:flex gap-20 mx-auto max-w-5xl justify-between items-center">
         <div className="w-56 mx-auto xl:w-72 my-20"><Lottie animationData={groovyWalkAnimation} loop={true} />
         </div>
@@ -43,7 +43,7 @@ export default function NewsLetter() {
             />
             <button
               type="submit"
-              className="p-1 sm:p-3 bg-blue-500 text-white rounded-r-lg hover:bg-blue-600 transition"
+              className="p-1 sm:p-3 bg-[#007BFF] text-white rounded-r-lg hover:bg-[#0071e9] transition"
             >
               Subscribe Now
             </button>

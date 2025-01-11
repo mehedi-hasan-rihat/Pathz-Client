@@ -2,11 +2,11 @@ import React from "react";
 
 export default function Footer() {
   return (
-    <div className="bg-gray-100 ">
-      <footer className="footer p-10 max-w-[1350px] mx-auto">
-        <nav className="max-w-sm">
+    <div className="bg-[#e2f0ff] ">
+
+        <nav className="text-center max-w-xl mx-auto py-10">
           <h3 className="text-black text-2xl font-extrabold">PathZ</h3>
-          <p className=" text-gray-400">
+          <p className="mt-2">
             Pathz is your ultimate travel companion, offering inspiring stories,
             tips, and guides to help you explore the world. From hidden gems to
             popular destinations, our blog provides insightful content to make
@@ -14,28 +14,8 @@ export default function Footer() {
           </p>
         </nav>
 
-        <nav>
-          <h6 className="footer-title">Services</h6>
-          <a className="link link-hover">Branding</a>
-          <a className="link link-hover">Design</a>
-          <a className="link link-hover">Marketing</a>
-          <a className="link link-hover">Advertisement</a>
-        </nav>
-        <nav>
-          <h6 className="footer-title">Company</h6>
-          <a className="link link-hover">About us</a>
-          <a className="link link-hover">Contact</a>
-          <a className="link link-hover">Jobs</a>
-          <a className="link link-hover">Press kit</a>
-        </nav>
-        <nav>
-          <h6 className="footer-title">Legal</h6>
-          <a className="link link-hover">Terms of use</a>
-          <a className="link link-hover">Privacy policy</a>
-          <a className="link link-hover">Cookie policy</a>
-        </nav>
-      </footer>
-      <footer className="footer max-w-[1350px] mx-auto border-base-300 border-t-2 px-10 py-4">
+    
+      <footer className="footer max-w-[1350px] mx-auto border-[#ffffffe6] border-t px-10 py-4">
         <aside className="grid-flow-col items-center">
           <svg
             width="24"

@@ -5,7 +5,7 @@ export default function Banner() {
   return (
     <div className="">
       <div
-        className="bg-banner-img relative h-[540px] md:h-[520px] xl:h-[700px] bg-cover bg-center grid place-items-center text-center mb-2"
+        className="bg-banner-img relative h-[540px] md:h-[520px] xl:h-[700px] bg-cover bg-center grid place-items-center text-center"
       >
         <motion.div
        initial={{ opacity: 0, scale: 0 }}
@@ -19,10 +19,10 @@ export default function Banner() {
           dragConstraints={{ left: 0, right: 0, top:0, bottom:0 }}
           className="max-w-2xl xl:max-w-4xl"
         >
-          <h2 className="text-3xl md:text-5xl lg:text-6xl xl:text-7xl px-5 font-bold leading-tight xl:leading-tight text-white xl:mb-7">
+          <h2 className="title-font text-3xl md:text-5xl lg:text-6xl xl:text-7xl px-5 font-bold  text-white/90 xl:mb-7">
             Exploring One Step at a Time
           </h2>
-          <p className="sm:text-lg lg:text-xl xl:text-2xl font-medium px-5 sm:px-1 mt-3 nunito-font max-w-xl xl:max-w-3xl text-white mx-auto">
+          <p className="sm:text-lg lg:text-xl xl:text-2xl font-medium px-5 sm:px-1  nunito-font max-w-xl xl:max-w-3xl text-white/80 mx-auto">
             Join Pathz in uncovering hidden gems and unforgettable destinations.
             Experience the world with inspiring stories
           </p>

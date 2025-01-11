@@ -10,6 +10,8 @@ import useAxiosSecure from "../hooks/useAxiosSecure";
 import { IoMdRemoveCircleOutline } from "react-icons/io";
 import { TbListDetails } from "react-icons/tb";
 import toast from "react-hot-toast";
+import PageTitle from "../Componenet/PageTitle";
+import { Helmet } from "react-helmet-async";
 
 export default function FeaturedPage() {
   const axiosSecure = useAxiosSecure();
@@ -70,9 +72,10 @@ export default function FeaturedPage() {
 
   return (
     <div className="">
-      <h1 className=" text-2xl font-medium text-gray-800 text-center py-20 bg-slate-100 mb-3">
-        Wishlisted Blogs
-      </h1>
+         <Helmet>
+              <title>Pathz - WishList</title>
+            </Helmet>
+       <PageTitle title={"💖 Your Travel Wishlist"} subTitle={'Keep track of your dream destinations and must-visit places. Let your wanderlust guide you to unforgettable adventures!'}/>
       <div className="overflow-x-auto my-16 rounded-xl text-sm sm:text-md min-h-[calc(100vh-500px)] px-2">
         <table className="table-auto w-full border-collapse border border-gray-300">
           <thead className="bg-[#60A5FA] text-white">

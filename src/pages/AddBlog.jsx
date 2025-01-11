@@ -1,12 +1,14 @@
 import React from 'react'
 import AddBlogForm from '../Componenet/AddBlog/AddBlogForm'
+import PageTitle from '../Componenet/PageTitle'
+import { Helmet } from 'react-helmet-async'
 export default function AddBlog() {
   return (
     <div>
-          <div className="text-center py-20 bg-slate-100">
-            <h2 className='text-2xl font-medium'>Add a new BLog</h2>
-            <p className='mt-1 font-normal'>Create and share your blog with the world</p>
-        </div>
+         <Helmet>
+              <title>Pathz - Share Your Journey</title>
+            </Helmet>
+          <PageTitle title={'✈️ Share Your Journey'} subTitle={'ake your readers on a journey through your words. Share your adventures, travel tips, hidden gems, and unforgettable experiences to inspire and guide fellow travelers around the globe!'}/>
       <AddBlogForm/>
     </div>
   )

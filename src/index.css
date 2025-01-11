@@ -3,10 +3,12 @@
 @tailwind components;
 @tailwind utilities;
 
+
 *{
-    font-family: "Oswald", serif;
+    font-family: "Nunito Sans", serif;
 }
 
-.nunito-font{
-    font-family: "Nunito Sans", serif;
+
+.title-font{
+    font-family: "Oswald", serif;
 }
