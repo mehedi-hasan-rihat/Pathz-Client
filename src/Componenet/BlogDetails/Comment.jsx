@@ -11,7 +11,7 @@ const BlogDetails = () => {
   const { id } = useParams();
   const fetchData = async () => {
     try {
-      const { data } = await axios.get(`http://localhost:5000/comments/${id}`);
+      const { data } = await axios.get(`https://pathz.vercel.app/comments/${id}`);
       setComments(data);
     } catch (err) {
       console.log(err);
@@ -23,7 +23,7 @@ const BlogDetails = () => {
     fetchData();
     const fetchEmail = async () => {
       try {
-        const { data } = await axiosSecure.get(`http://localhost:5000/blog/${id}`);
+        const { data } = await axiosSecure.get(`https://pathz.vercel.app/blog/${id}`);
         setBlogEmail(data.userInfo.email);
       } catch (err) {
         console.log(err);
@@ -45,7 +45,7 @@ const BlogDetails = () => {
 
     console.log(commentData)
     try {
-      const { data } = await axios.post(`http://localhost:5000/add-comment/${id}`,commentData);
+      const { data } = await axios.post(`https://pathz.vercel.app/add-comment/${id}`,commentData);
       console.log(data)
       fetchData()
     } catch (err) {
@@ -70,14 +70,15 @@ return (
         ></textarea>
         <button
           type="submit"
-          className="mt-2 bg-blue-400 text-white py-2 px-4 rounded-md right-0 top-36  absolute"
+          disabled = {!user}
+          className="mt-2 disabled:cursor-not-allowed disabled:bg-gray-400 disabled:text-gray-300 bg-[#007BFF] text-white py-2 px-4 rounded-md right-0 top-36  absolute"
         >
           Submit
         </button>
       </form> : <div className="w-full min-h-32 p-2 border  text-center border-gray-300 bg-gray-100 cursor-not-allowed rounded-md mt-5 flex items-center justify-center">Can not comment on own blog</div>
       }
 
-      {/* Displaying Hardcoded Comments */}
+
       <div className="comments mt-10">
         {comments?.comments?.map((comment, index) => (
           <div key={index} className="comment flex mt-3">

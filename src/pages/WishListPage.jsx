@@ -12,6 +12,7 @@ import { TbListDetails } from "react-icons/tb";
 import toast from "react-hot-toast";
 import PageTitle from "../Componenet/PageTitle";
 import { Helmet } from "react-helmet-async";
+import NoData from "../Componenet/NoData";
 
 export default function FeaturedPage() {
   const axiosSecure = useAxiosSecure();
@@ -57,13 +58,12 @@ export default function FeaturedPage() {
 
   const handleDelete = async (id) => {
     try {
-      const { data } = await axios.delete(`http://localhost:5000/delete/${id}`);
+      const { data } = await axios.delete(`https://pathz.vercel.app/delete/${id}`);
       console.log(data);
       if (data.deletedCount > 0) {
-
         const updatedList = wishList.filter((data) => data._id !== id);
         setWishList(updatedList);
-        notify()
+        notify();
       }
     } catch (err) {
       console.log(err);
@@ -72,11 +72,16 @@ export default function FeaturedPage() {
 
   return (
     <div className="">
-         <Helmet>
-              <title>Pathz - WishList</title>
-            </Helmet>
-       <PageTitle title={"💖 Your Travel Wishlist"} subTitle={'Keep track of your dream destinations and must-visit places. Let your wanderlust guide you to unforgettable adventures!'}/>
-      <div className="overflow-x-auto my-16 rounded-xl text-sm sm:text-md min-h-[calc(100vh-500px)] px-2">
+      <Helmet>
+        <title>Pathz - WishList</title>
+      </Helmet>
+      <PageTitle
+        title={"💖 Your Travel Wishlist"}
+        subTitle={
+          "Keep track of your dream destinations and must-visit places. Let your wanderlust guide you to unforgettable adventures!"
+        }
+      />
+      {wishList.length > 0 ? <div className="overflow-x-auto my-16 rounded-xl text-sm sm:text-md min-h-[calc(100vh-500px)] px-2">
         <table className="table-auto w-full border-collapse border border-gray-300">
           <thead className="bg-[#60A5FA] text-white">
             <tr className="text-center">
@@ -129,7 +134,10 @@ export default function FeaturedPage() {
             ))}
           </tbody>
         </table>
-      </div>
+      </div> : <div className="min-h-[70vh] flex items-center justify-center">
+          {" "}
+          <NoData />
+        </div>}
     </div>
   );
 }

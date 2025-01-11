@@ -56,7 +56,7 @@ const AuthProvider = ({ children }) => {
       if (currentUser?.email) {
         try {
           const { data } = await axios.post(
-            "http://localhost:5000/jwt",
+            "https://pathz.vercel.app/jwt",
             { email: currentUser?.email },
             {
               withCredentials: true,
@@ -68,7 +68,7 @@ const AuthProvider = ({ children }) => {
       } else {
         try {
           const { data } = await axios.get(
-            "http://localhost:5000/jwt-clear",
+            "https://pathz.vercel.app/jwt-clear",
             {withCredentials:true}
           );
         } catch (err) {

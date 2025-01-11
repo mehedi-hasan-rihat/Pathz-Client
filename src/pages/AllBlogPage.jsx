@@ -1,19 +1,21 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import BlogCard from "../Componenet/Blogs/BlogCard";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import Loader from "../Componenet/Loader";
 import PageTitle from "../Componenet/PageTitle";
 import { Helmet } from "react-helmet-async";
+import { AuthContext } from "../providers/AuthProvider";
+import NoData from "../Componenet/NoData";
 
 const App = () => {
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("");
-  const { data: blogs, isLoading } = useQuery({
+  const { data: blogs = [], isLoading } = useQuery({
     queryKey: ["blogs", category, search],
     queryFn: async () => {
       const { data } = await axios.get(
-        `http://localhost:5000/blogs?filter=${category}&search=${search}`,
+        `https://pathz.vercel.app/blogs?filter=${category}&search=${search}`,
         { withCredentials: true }
       );
 
@@ -21,13 +23,21 @@ const App = () => {
     },
   });
 
+  console.log(blogs);
+
   return (
     <div className="pb-8 px-3 min-h-screen mb-20 ">
-         <Helmet>
+      <Helmet>
         <title>Pathz - All Blogs</title>
       </Helmet>
       <div className="">
-      <PageTitle title={"🌍 Explore Inspiring Journeys"} subTitle={'Discover a world of adventures, tips, and stories shared by passionate travelers. Let their experiences guide your next unforgettable journey'}/>
+        <PageTitle
+          title={"🌍 Explore Inspiring Journeys"}
+          subTitle={
+            "Discover a world of adventures, tips, and stories shared by passionate travelers. Let their experiences guide your next unforgettable journey"
+          }
+        />
+
         <div className="mt-20 px-2 sm:px-0 container mx-auto">
           <div className="flex flex-row gap-5">
             <select
@@ -75,13 +85,17 @@ const App = () => {
         </div>
       </div>
 
-      {isLoading ? (
-        <Loader />
-      ) : (
+      {isLoading && <Loader />}
+      {blogs?.length > 0 ? (
         <div className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 gap-5 my-10 container mx-auto">
           {blogs?.map((blog) => {
             return <BlogCard key={blog._id} blogData={blog} />;
           })}
+        </div>
+      ) : (
+        <div className="min-h-[70vh] flex items-center justify-center">
+          {" "}
+          <NoData />
         </div>
       )}
     </div>

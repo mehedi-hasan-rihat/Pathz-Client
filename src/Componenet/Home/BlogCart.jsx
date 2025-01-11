@@ -48,7 +48,7 @@ export default function BlogCart({ id, blogData }) {
     };
     try {
       const { data } = await axiosSecure.post(
-        "http://localhost:5000/add-watchlist",
+        "https://pathz.vercel.app/add-watchlist",
         watchListData
       );
       if (data.insertedId) {

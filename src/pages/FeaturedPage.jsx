@@ -6,6 +6,7 @@ import React from "react";
 import Loader from "../Componenet/Loader";
 import PageTitle from "../Componenet/PageTitle";
 import { Helmet } from "react-helmet-async";
+import NoData from "../Componenet/NoData";
 
 const SortingDemo = () => {
   const {
@@ -16,7 +17,7 @@ const SortingDemo = () => {
   } = useQuery({
     queryKey: ["topBlogs"],
     queryFn: async () => {
-      const { data } = await axios.get(`http://localhost:5000/feature`);
+      const { data } = await axios.get(`https://pathz.vercel.app/feature`);
       console.log(data);
       return data;
     },
@@ -41,7 +42,7 @@ const SortingDemo = () => {
             </Helmet>
       <PageTitle title={"⭐ Featured Adventures"} subTitle={'Discover the top 10 must-read travel stories and guides handpicked for you. Explore the journeys that have inspired countless travelers around the world!'}/>
     <div className="">
-    <div className="mx-auto w-[80%] overflow-x-auto border border-gray-300 mb-20 mt-10">
+    {dataArray.length > 0 ? <div className="mx-auto w-[80%] overflow-x-auto border border-gray-300 mb-20 mt-10">
         <Table
           columns={[
             {
@@ -115,7 +116,10 @@ const SortingDemo = () => {
             },
           }}
         />
-      </div>
+      </div> : <div className="min-h-[70vh] flex items-center justify-center">
+          {" "}
+          <NoData />
+        </div>}
     </div>
     </div>
   );
