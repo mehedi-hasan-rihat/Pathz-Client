@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Footer() {
   return (
-    <div className="bg-[#e2f0ff] ">
+    <div className="bg-[#ECF5FF] ">
 
         <nav className="text-center max-w-xl mx-auto py-10">
           <h3 className="text-black text-2xl font-extrabold">PathZ</h3>
