@@ -4,57 +4,68 @@ import { AuthContext } from "../../providers/AuthProvider";
 import toast from "react-hot-toast";
 
 export default function Navbar() {
-  const { user, logOut  } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
   const navigate = useNavigate();
   const listItem = (
     <div className="flex flex-col items-center lg:flex-row gap-2 text-[17px]   nunito-font font-semibold ">
-     
-        <NavLink to="/" className={({ isActive }) =>
+      <NavLink
+        to="/"
+        className={({ isActive }) =>
           `p-1 hover:text-[#4aa0fdda] ${
             isActive ? "text-[#228dff] text-[18px]" : "text-[#adadad]"
           }`
-        }>
-          <p className="p-1 nunito-font">Home</p>
-        </NavLink>
- 
-        <NavLink to="/blogs" className={({ isActive }) =>
-          `p-1 hover:text-[#4aa0fdda] ${
-            isActive ? "text-[#228dff] text-[18px]" : "text-[#adadad]"
-          }`
-        }>
-          <p className="p-1 nunito-font">All Blog</p>
-        </NavLink>
+        }
+      >
+        <p className="p-1 nunito-font">Home</p>
+      </NavLink>
 
-    {user &&     <NavLink
+      <NavLink
+        to="/blogs"
+        className={({ isActive }) =>
+          `p-1 hover:text-[#4aa0fdda] ${
+            isActive ? "text-[#228dff] text-[18px]" : "text-[#adadad]"
+          }`
+        }
+      >
+        <p className="p-1 nunito-font">All Blog</p>
+      </NavLink>
+
+      {user && (
+        <NavLink
           to="/add-blog"
           className={({ isActive }) =>
             `p-1 hover:text-[#4aa0fdda] ${
               isActive ? "text-[#228dff] text-[18px]" : "text-[#adadad]"
             }`
-          }>
+          }
+        >
           <p className="p-1 nunito-font">Add Blog</p>
-        </NavLink>}
+        </NavLink>
+      )}
 
-       {user &&  <NavLink
+      {user && (
+        <NavLink
           to="/wishlist"
           className={({ isActive }) =>
             `p-1 hover:text-[#4aa0fdda] ${
               isActive ? "text-[#228dff] text-[18px]" : "text-[#adadad]"
             }`
-          }>
+          }
+        >
           <p className="p-1 nunito-font">Wishlist</p>
-        </NavLink>}
-  
-       <NavLink
-          to="/feature"
-          className={({ isActive }) =>
-            `p-1 hover:text-[#4aa0fdda] ${
-              isActive ? "text-[#228dff] text-[18px]" : "text-[#adadad]"
-            }`
-          }>
-          <p className="p-1 nunito-font">Featured</p>
         </NavLink>
+      )}
 
+      <NavLink
+        to="/feature"
+        className={({ isActive }) =>
+          `p-1 hover:text-[#4aa0fdda] ${
+            isActive ? "text-[#228dff] text-[18px]" : "text-[#adadad]"
+          }`
+        }
+      >
+        <p className="p-1 nunito-font">Featured</p>
+      </NavLink>
     </div>
   );
   return (
@@ -81,7 +92,7 @@ export default function Navbar() {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-black z-[1] mt-3 w-52  shadow rounded-b-md"
+              className="menu dropdown-content bg-[#111111] z-[1] mt-3 w-[98vw] shadow rounded-b-md"
             >
               {listItem}
             </ul>
@@ -106,10 +117,9 @@ export default function Navbar() {
               <div
                 onClick={() => {
                   logOut();
-                  toast.success("Succesfully Logout !")
+                  toast.success("Succesfully Logout !");
                   navigate("/");
                 }}
-               
               >
                 <span className="block cursor-pointer bg-[#007BFF] /80 px-6 py-2 text-[17px] font-medium group-hover:bg-transparent">
                   Logout
